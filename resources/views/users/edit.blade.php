@@ -52,6 +52,35 @@
             {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
         </div>
     </div>
+    
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Company:</strong>
+            {!! Form::select('company_id', [null=>'Please Select'] +$companies,array('class' => 'form-control','multiple')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Department:</strong>
+            {!! Form::select('department_id', [null=>'Please Select'] +$departments,array('class' => 'form-control','multiple')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Position:</strong>
+            {!! Form::select('position_id', [null=>'Please Select'] +$positions,array('class' => 'form-control','multiple')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Related User:</strong>
+            {!! Form::select('parent_id', [null=>'Please Select'] +$parents,array('class' => 'form-control','multiple')) !!}
+        </div>
+    </div>
+
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Role:</strong>

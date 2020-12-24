@@ -8,6 +8,9 @@ use App\User;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use App\Company;
+use App\Department;
+use App\Position;
     
 class UserController extends Controller
 {
@@ -79,7 +82,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::with(['company','department','position','parent'])->find($id);
         return view('users.show',compact('user'));
     }
     
@@ -94,8 +97,12 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
+        $companies = Company::pluck('name','id')->all();
+        $departments = Department::pluck('name','id')->all();
+        $positions = Position::pluck('name','id')->all();
+        $parents = User::pluck('name','id')->all();
     
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('users.edit',compact('user','roles','userRole','companies','departments','positions', 'parents'));
     }
     
     /**

@@ -29,6 +29,38 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>Company:</strong>
+            @if (!@empty($user->company->name))               
+                {{ $user->company->name }}
+            @endif
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Department:</strong>
+            @if (!@empty($user->company->name))   
+                {{ $user->department->name }}
+            @endif
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Position:</strong>
+            @if (!@empty($user->company->name))
+                {{ $user->position->name }}
+            @endif
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Related User:</strong>
+            @if (!@empty($user->company->name))
+                {{ $user->parent->name }}
+            @endif
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>Roles:</strong>
             @if(!empty($user->getRoleNames()))
                 @foreach($user->getRoleNames() as $v)

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Document;
 use Illuminate\Http\Request;
 
+use Auth;
+
 class DocumentController extends Controller
 { 
     /**
@@ -54,8 +56,11 @@ class DocumentController extends Controller
             'no' => 'required',
         ]);
     
-        Document::create($request->all());
-    
+        $document = Document::create($request->all());
+
+        $user = Auth::user();
+        $user->parent->notify(new \App\Notifications\StatusDocument($document));
+        
         return redirect()->route('documents.index')
                         ->with('success','Document created successfully.');
     }
@@ -98,6 +103,10 @@ class DocumentController extends Controller
     
         $document->update($request->all());
     
+        $user = Auth::user();
+        $user->parent->notify(new \App\Notifications\StatusDocument($document));
+        
+
         return redirect()->route('documents.index')
                         ->with('success','Document updated successfully');
     }
