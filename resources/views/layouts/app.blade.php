@@ -13,11 +13,17 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script type="text/javascript" src="{{ asset('codebase/webix/webix.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('codebase/webix/skins/compact.min.css') }}">
+
+    <link rel="stylesheet" href="{{asset('MaterialDesign/css/materialdesignicons.css')}}" type="text/css" charset="utf-8">
+
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-laravel bg-primary">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     SysDur
                 </a>
@@ -26,23 +32,26 @@
                 </button>
     
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                    
                     <ul class="navbar-nav mr-auto"></ul>
 
 
-                    <!-- Right Side Of Navbar -->
+                    
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                        
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+
+                        @role('Superadmin')
                             <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
                             <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
                             <li><a class="nav-link" href="{{ route('companies.index') }}">Manage Company</a></li>
                             <li><a class="nav-link" href="{{ route('departments.index') }}">Manage Department</a></li>
                             <li><a class="nav-link" href="{{ route('positions.index') }}">Manage Position</a></li>
-                            <li><a class="nav-link" href="{{ route('documents.index') }}">Manage Document</a></li>
+                            <!-- <li><a class="nav-link" href="{{ route('documents.index') }}">Manage Document</a></li> -->
+                        @endrole
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -69,11 +78,11 @@
         </nav>
 
 
-        <main class="py-4">
+        <!-- <main class="py-4"> -->
             <div class="container">
             @yield('content')
             </div>
-        </main>
+        <!-- </main> -->
     </div>
 </body>
 </html>

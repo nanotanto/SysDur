@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<!-- <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -19,5 +19,18 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+    
+    <script type="text/javascript">
+        webix.ready(function(){
+            if (webix.CustomScroll)
+                webix.CustomScroll.init();
+                
+            const app = new dms.App();
+            app.render(document.body);
+        });
+    </script>
+
+    <!-- App -->
+    <script type="text/javascript" src="codebase/app.js"></script>
 @endsection

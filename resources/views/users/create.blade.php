@@ -27,12 +27,18 @@
 
 
 
-{!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
+{!! Form::open(array('route' => 'users.store','method'=>'POST', 'enctype' => 'multipart/form-data')) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Name:</strong>
             {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>No. ID:</strong>
+            {!! Form::text('nik', null, array('placeholder' => 'No. ID','class' => 'form-control')) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -53,6 +59,42 @@
             {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
         </div>
     </div>
+
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Company:</strong>
+            {!! Form::select('company_id', [null=>'Please Select'] +$companies,array('class' => 'form-control','multiple')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Department:</strong>
+            {!! Form::select('department_id', [null=>'Please Select'] +$departments,array('class' => 'form-control','multiple')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Position:</strong>
+            {!! Form::select('position_id', [null=>'Please Select'] +$positions,array('class' => 'form-control','multiple')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Related User:</strong>
+            {!! Form::select('parent_id', [null=>'Please Select'] +$parents,array('class' => 'form-control','multiple')) !!}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Sign:</strong>
+            {!! Form::file('sign', null, array('placeholder' => 'Sign','class' => 'form-control')) !!}
+        </div>
+    </div>
+
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Role:</strong>

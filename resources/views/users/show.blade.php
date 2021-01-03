@@ -38,7 +38,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Department:</strong>
-            @if (!@empty($user->company->name))   
+            @if (!@empty($user->department->name))   
                 {{ $user->department->name }}
             @endif
         </div>
@@ -46,7 +46,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Position:</strong>
-            @if (!@empty($user->company->name))
+            @if (!@empty($user->position->name))
                 {{ $user->position->name }}
             @endif
         </div>
@@ -54,7 +54,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Related User:</strong>
-            @if (!@empty($user->company->name))
+            @if (!@empty($user->parent->name))
                 {{ $user->parent->name }}
             @endif
         </div>

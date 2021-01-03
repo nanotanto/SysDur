@@ -26,12 +26,18 @@
 @endif
 
 
-{!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+{!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id], 'enctype' => 'multipart/form-data']) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Name:</strong>
             {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>No. ID:</strong>
+            {!! Form::text('nik', null, array('placeholder' => 'No. ID','class' => 'form-control')) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -78,6 +84,13 @@
         <div class="form-group">
             <strong>Related User:</strong>
             {!! Form::select('parent_id', [null=>'Please Select'] +$parents,array('class' => 'form-control','multiple')) !!}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Sign:</strong>
+            {!! Form::file('sign', null, array('placeholder' => 'Sign','class' => 'form-control')) !!}
         </div>
     </div>
 

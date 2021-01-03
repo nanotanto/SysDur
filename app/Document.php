@@ -12,6 +12,15 @@ class Document extends Model
      * @var array
      */
     protected $fillable = [
-        'no', 'name'
+        'no', 'name',
+        'lingkup',
+        'tujuan',
+        'definisi',
+        'uraian',
+        'prosedur',
+        'lampiran',
+        'terkait',
+        'file1',
+        'file2'
     ];    
 }
