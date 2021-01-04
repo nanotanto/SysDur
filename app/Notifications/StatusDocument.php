@@ -46,7 +46,7 @@ class StatusDocument extends Notification
     {
         return (new MailMessage)
                     ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/documents/'.$this->document->id))
+                    ->action('Notification Action', url('/documents/'.$this->document->id.'/edit'))
                     ->line('Thank you for using our application!');
     }
 

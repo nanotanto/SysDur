@@ -26,7 +26,7 @@
     @endif
 
 
-    <form action="{{ route('documents.update',$document->id) }}" method="POST">
+    <form action="{{ route('documents.update',$document->id) }}" method="POST" enctype='multipart/form-data'>
     	@csrf
         @method('PUT')
 
@@ -40,28 +40,66 @@
 		    </div>
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
-		            <strong>Name:</strong>
+		            <strong>Nama Dokumen:</strong>
 		            <input type="text" name="name" value="{{ $document->name }}" class="form-control" placeholder="Name">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $document->name }}</textarea>
 		        </div>
-		    </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>I. Ruang Lingkup:</strong>
+		            <textarea type="text" name="lingkup" class="form-control" placeholder="Ruang Lingkup">{{ $document->lingkup }}</textarea>
+		        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>II. Tujuan:</strong>
+		            <textarea type="text" name="tujuan" class="form-control" placeholder="Tujuan">{{ $document->tujuan }}</textarea>
+		        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>III. Definisi:</strong>
+		            <textarea type="text" name="definisi" class="form-control" placeholder="Definisi">{{ $document->definisi }}</textarea>
+		        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>IV. Uraian Umum:</strong>
+		            <textarea type="text" name="uraian" class="form-control" placeholder="Uraian Umum">{{ $document->uraian }}</textarea>
+		        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>V. Prosedur:</strong>
+		            <textarea type="text" name="prosedur" class="form-control" placeholder="Prosedur">{{ $document->prosedur }}</textarea>
+		        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>VI. Lampiran:</strong>
+		            <textarea type="text" name="lampiran" class="form-control" placeholder="Lampiran">{{ $document->lampiran }}</textarea>
+                </div>
+                <div class="form-group">
+                    <strong>Attachment:</strong>
+                    {!! Form::file('file1', null, array('placeholder' => '','class' => 'form-control')) !!}
+                </div>
+                <div class="form-group">
+                    <strong>More Attachment:</strong>
+                    {!! Form::file('file2', null, array('placeholder' => '','class' => 'form-control')) !!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>VII. Dokumen Terkait:</strong>
+		            <textarea type="text" name="terkait" class="form-control" placeholder="Dokumen Terkait">{{ $document->terkait }}</textarea>
+		        </div>
+            </div>
+            
 		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 		      <button type="submit" class="btn btn-primary">Submit</button>
 		    </div>
 		</div>
-
-        <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-            </div>
-          </div>
   
     </form>
 

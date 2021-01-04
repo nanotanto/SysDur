@@ -26,7 +26,7 @@
     @endif
 
 
-    <form action="{{ route('documents.store') }}" method="POST">
+    <form action="{{ route('documents.store') }}" method="POST" enctype='multipart/form-data'>
     	@csrf
 
 
@@ -39,10 +39,62 @@
 		    </div>
 		    <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
-		            <strong>Name:</strong>
-		            <input type="text" name="name" class="form-control" placeholder="Name">
+		            <strong>Nama Dokumen:</strong>
+		            <input type="text" name="name" class="form-control" placeholder="Nama Dokumen">
 		        </div>
-		    </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>I. Ruang Lingkup:</strong>
+		            <textarea type="text" name="lingkup" class="form-control" placeholder="Ruang Lingkup"></textarea>
+		        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>II. Tujuan:</strong>
+		            <textarea type="text" name="tujuan" class="form-control" placeholder="Tujuan"></textarea>
+		        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>III. Definisi:</strong>
+		            <textarea type="text" name="definisi" class="form-control" placeholder="Definisi"></textarea>
+		        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>IV. Uraian Umum:</strong>
+		            <textarea type="text" name="uraian" class="form-control" placeholder="Uraian Umum"></textarea>
+		        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>V. Prosedur:</strong>
+		            <textarea type="text" name="prosedur" class="form-control" placeholder="Prosedur"></textarea>
+		        </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>VI. Lampiran:</strong>
+		            <textarea type="text" name="lampiran" class="form-control" placeholder="Lampiran"></textarea>
+                </div>
+                <div class="form-group">
+                    <strong>Attachment:</strong>
+                    {!! Form::file('file1', null, array('placeholder' => '','class' => 'form-control')) !!}
+                </div>
+                <div class="form-group">
+                    <strong>More Attachment:</strong>
+                    {!! Form::file('file2', null, array('placeholder' => '','class' => 'form-control')) !!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+		        <div class="form-group">
+		            <strong>VII. Dokumen Terkait:</strong>
+		            <textarea type="text" name="terkait" class="form-control" placeholder="Dokumen Terkait"></textarea>
+		        </div>
+            </div>
+            
+
 		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 		            <button type="submit" class="btn btn-primary">Submit</button>
 		    </div>

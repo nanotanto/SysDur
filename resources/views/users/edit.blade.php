@@ -28,16 +28,11 @@
 
 {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id], 'enctype' => 'multipart/form-data']) !!}
 <div class="row">
+    
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Name:</strong>
             {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>No. ID:</strong>
-            {!! Form::text('nik', null, array('placeholder' => 'No. ID','class' => 'form-control')) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -61,29 +56,35 @@
     
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>No. ID:</strong>
+            {!! Form::text('nik', null, array('placeholder' => 'No. ID','class' => 'form-control')) !!}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>Company:</strong>
-            {!! Form::select('company_id', [null=>'Please Select'] +$companies,array('class' => 'form-control','multiple')) !!}
+            {!! Form::select('company_id', [$user->company_id=>$user->company->name]  +$companies,array('class' => 'form-control')) !!}
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Department:</strong>
-            {!! Form::select('department_id', [null=>'Please Select'] +$departments,array('class' => 'form-control','multiple')) !!}
+            {!! Form::select('department_id', [$user->department_id=>$user->department->name] +$departments,array('class' => 'form-control')) !!}
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Position:</strong>
-            {!! Form::select('position_id', [null=>'Please Select'] +$positions,array('class' => 'form-control','multiple')) !!}
+            {!! Form::select('position_id', [$user->position_id=>$user->position->name] +$positions,array('class' => 'form-control')) !!}
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Related User:</strong>
-            {!! Form::select('parent_id', [null=>'Please Select'] +$parents,array('class' => 'form-control','multiple')) !!}
+            {!! Form::select('parent_id', [$user->parent_id=>$user->parent->name] +$parents,array('class' => 'form-control')) !!}
         </div>
     </div>
 

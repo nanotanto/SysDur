@@ -140,6 +140,7 @@ class UserController extends Controller
     
         $input = $request->all();
         $input['sign'] = $fileName;
+        
         if(!empty($input['password'])){ 
             $input['password'] = Hash::make($input['password']);
         }else{

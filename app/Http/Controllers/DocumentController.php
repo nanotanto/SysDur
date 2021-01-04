@@ -54,9 +54,29 @@ class DocumentController extends Controller
         request()->validate([
             'name' => 'required',
             'no' => 'required',
+            'file1' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'file2' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
+        
+        $input = $request->all();
+
+        if(!empty($input['file1'])){ 
+            $fileName1 = time().'.'.$request->file1->extension();
+            $request->file1->move(public_path('uploads'), $fileName1);
+            $input['file1'] = $fileName1;
+        }else{
+            $input['file1'] = "";    
+        }
+
+        if(!empty($input['file1'])){ 
+            $fileName2 = time().'.'.$request->file2->extension();
+            $request->file2->move(public_path('uploads'), $fileName2);
+            $input['file2'] = $fileName2;
+        }else{
+            $input['file2'] = "";    
+        }
     
-        $document = Document::create($request->all());
+        $document = Document::create($input);
 
         $user = Auth::user();
         $user->parent->notify(new \App\Notifications\StatusDocument($document));
@@ -99,9 +119,29 @@ class DocumentController extends Controller
          request()->validate([
             'name' => 'required',
             'no' => 'required',
-        ]);
+            'file1' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'file2' => 'image|mimes:jpeg,png,jpg|max:2048'
+        ]);               
+
+        $input = $request->all();           
+        
+        if(!empty($input['file1'])){ 
+            $fileName1 = time().'.'.$request->file1->extension();
+            $request->file1->move(public_path('uploads'), $fileName1);
+            $input['file1'] = $fileName1;
+        }else{
+            $input['file1'] = "";    
+        }
+
+        if(!empty($input['file1'])){ 
+            $fileName2 = time().'.'.$request->file2->extension();
+            $request->file2->move(public_path('uploads'), $fileName2);
+            $input['file2'] = $fileName2;
+        }else{
+            $input['file2'] = "";    
+        }
     
-        $document->update($request->all());
+        $document->update($input);
     
         $user = Auth::user();
         $user->parent->notify(new \App\Notifications\StatusDocument($document));
