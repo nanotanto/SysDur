@@ -64,4 +64,9 @@ class User extends Authenticatable
         return $this->belongsTo('App\Position', 'position_id', 'id');
     }
 
+    public function documents()
+    {
+        return $this->hasMany('App\Document');
+    }
+
 }

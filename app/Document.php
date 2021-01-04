@@ -13,6 +13,7 @@ class Document extends Model
      */
     protected $fillable = [
         'no', 'name',
+        'no_rev','revisi','user_id',
         'lingkup',
         'tujuan',
         'definisi',
@@ -23,4 +24,10 @@ class Document extends Model
         'file1',
         'file2'
     ];    
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }

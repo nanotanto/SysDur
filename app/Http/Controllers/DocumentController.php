@@ -60,6 +60,7 @@ class DocumentController extends Controller
         
         $input = $request->all();
 
+
         if(!empty($input['file1'])){ 
             $fileName1 = time().'.'.$request->file1->extension();
             $request->file1->move(public_path('uploads'), $fileName1);
@@ -75,10 +76,12 @@ class DocumentController extends Controller
         }else{
             $input['file2'] = "";    
         }
-    
-        $document = Document::create($input);
-
+        
         $user = Auth::user();
+        $input['user_id'] = $user->id;
+
+        $document = Document::create($input);
+        
         $user->parent->notify(new \App\Notifications\StatusDocument($document));
         
         return redirect()->route('documents.index')
@@ -144,7 +147,9 @@ class DocumentController extends Controller
         $document->update($input);
     
         $user = Auth::user();
-        $user->parent->notify(new \App\Notifications\StatusDocument($document));
+        if (!empty($user->parent_id)) {
+            $user->parent->notify(new \App\Notifications\StatusDocument($document));
+        }        
         
 
         return redirect()->route('documents.index')

@@ -44,6 +44,24 @@
 		            <input type="text" name="name" value="{{ $document->name }}" class="form-control" placeholder="Name">
 		        </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Revisi Ke:</strong>
+                    <input type="text" name="name" value="{{ $document->no_rev }}" class="form-control" placeholder="Revisi Ke">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Deskripsi:</strong>
+                    <input type="text" name="name" value="{{ $document->revisi }}" class="form-control" placeholder="Deskripsi">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>PIC:</strong>
+                    <input type="text" name="name" value="{{ $document->user->name }}" class="form-control" placeholder="PIC">
+                </div>
+            </div>
             
             <div class="col-xs-12 col-sm-12 col-md-12">
 		        <div class="form-group">
