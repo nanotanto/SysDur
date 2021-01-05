@@ -60,7 +60,6 @@ class DocumentController extends Controller
         
         $input = $request->all();
 
-
         if(!empty($input['file1'])){ 
             $fileName1 = time().'.'.$request->file1->extension();
             $request->file1->move(public_path('uploads'), $fileName1);

@@ -71,13 +71,16 @@ class UserController extends Controller
             'roles' => 'required'
         ]);
 
-        $fileName = time().'.'.$request->sign->extension();
-
-        $request->sign->move(public_path('uploads'), $fileName);
-    
         $input = $request->all();
+
+        if(!empty($input['sign'])){ 
+            $fileName = time().'.'.$request->sign->extension();
+            $request->sign->move(public_path('uploads'), $fileName);
+            $input['sign'] = $fileName;
+        }
+        
         $input['password'] = Hash::make($input['password']);
-        $input['sign'] = $fileName;
+        
     
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
@@ -133,13 +136,15 @@ class UserController extends Controller
             'sign' => 'image|mimes:jpeg,png,jpg|max:2048',
             'roles' => 'required'
         ]);
-
-        $fileName = time().'.'.$request->sign->extension();
-
-        $request->sign->move(public_path('uploads'), $fileName);
-    
+        
         $input = $request->all();
-        $input['sign'] = $fileName;
+
+        if(!empty($input['sign'])){ 
+            $fileName = time().'.'.$request->sign->extension();
+            $request->sign->move(public_path('uploads'), $fileName);
+            $input['sign'] = $fileName;
+        }   
+        
         
         if(!empty($input['password'])){ 
             $input['password'] = Hash::make($input['password']);

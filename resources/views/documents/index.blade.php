@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 
 @section('content')
@@ -28,6 +28,7 @@
             <th>No</th>
             <th>Document No.</th>
             <th>Document Name</th>
+            <th>Revision</th>
             <th width="280px">Action</th>
         </tr>
 	    @foreach ($documents as $document)
@@ -35,6 +36,7 @@
 	        <td>{{ ++$i }}</td>
 	        <td>{{ $document->no }}</td>
 	        <td>{{ $document->name }}</td>
+	        <td>{{ $document->no_rev }}</td>
 	        <td>
                 <form action="{{ route('documents.destroy',$document->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('documents.show',$document->id) }}">Show</a>

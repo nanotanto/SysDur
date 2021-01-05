@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 
 @section('content')
@@ -8,7 +8,7 @@
                 <h2>Add New Document</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('documents.index') }}"> Back</a>
+                {{-- <a class="btn btn-primary" href="{{ url('/#!/top/draft') }}"> Back</a> --}}
             </div>
         </div>
     </div>

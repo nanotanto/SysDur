@@ -12,7 +12,7 @@
   background: rgb(204,204,204); 
 }
 page {
-  padding: 4cm 1.5cm 4cm 1.5cm;
+    padding: 4cm 1.5cm 4cm 1.5cm;
   position: relative;
   background: white;
   display: block;
@@ -53,46 +53,39 @@ footer {
   background-color: #fff;
   padding-right: 1.5cm;
   padding-left: 1.5cm;
-  text-align: center;
+}
+header:after{
+  content: "";
+}
+footer:after{
+  content: "";
 }
 
 header {
   top: 0;
-  padding-top: 4mm;
+  padding-top: 5mm;
   padding-bottom: 3mm;
 }
 footer {
   bottom: 0;
   color: #000;
   padding-top: 3mm;
-  padding-bottom: 4mm;
+  padding-bottom: 5mm;
 }
 
 @media print {
-  body, page {    
-  /* width: 21cm;
-  height: 29.7cm;  */
-  font-size: 12pt;
-  padding-top: 2.5cm;
-  padding-right: 0px;
-  padding-bottom: 2.5cm;
-  padding-left: 0px;
-            border: initial;
-            border-radius: initial;
-            width: initial;
-            min-height: initial;
-            box-shadow: initial;
-            background: initial;
-            page-break-after: always;
+  body, page {
+    margin: 0;
+    box-shadow: 0;
   }
   header,
   footer {
     position: fixed;
     left: 0;
     right: 0;
-    background-color: #ccc;
-    /* padding-right: 1.5cm;
-    padding-left: 1.5cm; */
+    background-color: #fff;
+    padding-right: 1.5cm;
+    padding-left: 1.5cm;
   }
 }
     </style>
@@ -101,14 +94,14 @@ footer {
 
     <page size="A4">
         <header>
-          <img style="width: 100%;" src="{{ asset('img/header.png') }}">
+          <img src="{{ asset('img/header.png') }}">
           </header>
       <footer>        
-        <img style="width: 100%;" src="{{ asset('img/footer.png') }}">
+        <img src="{{ asset('img/footer.png') }}">
       </footer>
 
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        {{-- <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>No:</strong><br/>
                 {{ $document->no }}
@@ -119,7 +112,7 @@ footer {
                 <strong>Nama Dokumen:</strong><br/>
                 {{ $document->name }}
             </div>
-        </div>
+        </div> --}}
         
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -164,39 +157,16 @@ footer {
                 {{ $document->terkait }}
             </div>
         </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-          <div class="form-group">
-              <strong>VIII. Catatan Revisi:</strong><br/>
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th style="width: 100px;" scope="col">Revisi Ke:</th>
-                    <th scope="col">Deskripsi</th>
-                    <th scope="col">PIC</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">{{ $document->no_rev }}</th>
-                    <td>{{ $document->revisi }}</td>
-                    <td>{{ $document->user->name }}</td>
-                  </tr>
-                </tbody>
-              </table>
-          </div>
-      </div>
-
     </div>
 
     </page>
 
     <page size="A4">
       <header>
-        <img style="width: 100%;" src="{{ asset('img/header.png') }}">
+        <img src="{{ asset('img/header.png') }}">
         </header>
     <footer>        
-      <img style="width: 100%;" src="{{ asset('img/footer.png') }}">
+      <img src="{{ asset('img/footer.png') }}">
     </footer>
 
         <div class="form-group">
@@ -205,14 +175,14 @@ footer {
             </div>
     </page>
 
-    <page size="A4">    
+    <page size="A4">      
       <header>
-        <img style="width: 100%;" src="{{ asset('img/header.png') }}">
+        <img src="{{ asset('img/header.png') }}">
         </header>
     <footer>        
-      <img style="width: 100%;" src="{{ asset('img/footer.png') }}">
+      <img src="{{ asset('img/footer.png') }}">
     </footer>
-  
+
             <div class="form-group">
                 <strong>More Attachment:</strong><br/>
                 {{ $document->file2 }}
