@@ -61,15 +61,15 @@ class DocumentController extends Controller
         $input = $request->all();
 
         if(!empty($input['file1'])){ 
-            $fileName1 = time().'.'.$request->file1->extension();
+            $fileName1 = time().'.'.$request->file1->getClientOriginalName();
             $request->file1->move(public_path('uploads'), $fileName1);
             $input['file1'] = $fileName1;
         }else{
             $input['file1'] = "";    
         }
 
-        if(!empty($input['file1'])){ 
-            $fileName2 = time().'.'.$request->file2->extension();
+        if(!empty($input['file2'])){ 
+            $fileName2 = time().'.'.$request->file2->getClientOriginalName();
             $request->file2->move(public_path('uploads'), $fileName2);
             $input['file2'] = $fileName2;
         }else{
@@ -128,15 +128,15 @@ class DocumentController extends Controller
         $input = $request->all();           
         
         if(!empty($input['file1'])){ 
-            $fileName1 = time().'.'.$request->file1->extension();
+            $fileName1 = time().'.'.$request->file1->getClientOriginalName();
             $request->file1->move(public_path('uploads'), $fileName1);
             $input['file1'] = $fileName1;
         }else{
             $input['file1'] = "";    
         }
 
-        if(!empty($input['file1'])){ 
-            $fileName2 = time().'.'.$request->file2->extension();
+        if(!empty($input['file2'])){ 
+            $fileName2 = time().'.'.$request->file2->getClientOriginalName();
             $request->file2->move(public_path('uploads'), $fileName2);
             $input['file2'] = $fileName2;
         }else{

@@ -201,7 +201,8 @@ footer {
 
         <div class="form-group">
                 <strong>Attachment:</strong><br/>
-                {{ $document->file1 }}
+                <img style="width: 100%;" src="{{ asset('uploads/'.$document->file1) }}">
+                {{-- {{ $document->file1 }} --}}
             </div>
     </page>
 
@@ -215,7 +216,8 @@ footer {
   
             <div class="form-group">
                 <strong>More Attachment:</strong><br/>
-                {{ $document->file2 }}
+                <img style="width: 100%;" src="{{ asset('uploads/'.$document->file2) }}">
+                {{-- {{ $document->file2 }} --}}
             </div>
     </page>
 
