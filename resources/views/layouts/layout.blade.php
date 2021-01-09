@@ -13,7 +13,8 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <script type="text/javascript" src="{{ asset('js/jquery-1.11.1.js') }}"></script>
+    
 </head>
 <body>
     <div id="app">
@@ -24,5 +25,23 @@
             </div>
         <!-- </main> -->
     </div>
+
+    <script>
+        function bacaGambar(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+            
+                reader.onload = function (e) {
+                    $('#gambar_nodin').attr('src', e.target.result);
+                }
+            
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#preview_gambar").change(function(){
+            bacaGambar(this);
+        });
+    </script>
 </body>
 </html>

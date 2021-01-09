@@ -80,11 +80,15 @@
                 </div>
                 <div class="form-group">
                     <strong>Attachment:</strong>
-                    {!! Form::file('file1', null, array('placeholder' => '','class' => 'form-control')) !!}
+                    {{-- {!! Form::file('file1', null, array('placeholder' => '','class' => 'form-control','id' => 'preview_gambar')) !!}
+                    <br/> --}}
+                    <input type="file" name="file" id="preview_gambar" />
+                    <img src="#" id="gambar_nodin" width="400" alt="Preview Gambar" />
+                
                 </div>
                 <div class="form-group">
                     <strong>More Attachment:</strong>
-                    {!! Form::file('file2', null, array('placeholder' => '','class' => 'form-control')) !!}
+                    {!! Form::file('file2', null, array('placeholder' => '','class' => 'form-control','id' => 'preview_file2')) !!}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -98,10 +102,12 @@
 		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 		            <button type="submit" class="btn btn-primary">Submit</button>
 		    </div>
-		</div>
-
+		</div>       
 
     </form>
-
+    
 
 @endsection
+
+
+ 

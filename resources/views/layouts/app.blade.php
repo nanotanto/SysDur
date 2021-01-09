@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('codebase/webix/skins/compact.min.css') }}">
 
     <link rel="stylesheet" href="{{asset('MaterialDesign/css/materialdesignicons.css')}}" type="text/css" charset="utf-8">
-
+    
 </head>
 <body>
     <div id="app">

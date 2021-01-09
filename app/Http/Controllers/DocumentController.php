@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Document;
 use Illuminate\Http\Request;
 
+use File;
+
 use Auth;
 
 class DocumentController extends Controller
@@ -163,6 +165,20 @@ class DocumentController extends Controller
      */
     public function destroy(Document $document)
     {
+        // dd($document->file1);
+
+        if(File::exists(public_path('uploads/'.$document->file1))){
+            File::delete(public_path('uploads/'.$document->file1));
+        }else{
+            dd('File does not exists.');
+        }
+
+        if(File::exists(public_path('uploads/'.$document->file2))){
+            File::delete(public_path('uploads/'.$document->file2));
+        }else{
+            dd('File does not exists.');
+        }
+
         $document->delete();
     
         return redirect()->route('documents.index')
