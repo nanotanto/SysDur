@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use File;
 
 use Auth;
+use App\User;
 
 class DocumentController extends Controller
 { 
@@ -19,8 +20,8 @@ class DocumentController extends Controller
     function __construct()
     {
          $this->middleware('permission:document-list|document-create|document-edit|document-delete', ['only' => ['index','show']]);
-         $this->middleware('permission:document-create', ['only' => ['create','store']]);
-         $this->middleware('permission:document-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:document-create', ['only' => ['create','store', 'revised', 'submit']]);
+         $this->middleware('permission:document-edit', ['only' => ['edit','update', 'revised', 'submit']]);
          $this->middleware('permission:document-delete', ['only' => ['destroy']]);
     }
     /**
@@ -184,4 +185,39 @@ class DocumentController extends Controller
         return redirect()->route('documents.index')
                         ->with('success','Document deleted successfully');
     }
+
+    public function submit(Request $request, Document $document)
+    {
+        $id = $request->input('id');
+        $document = Document::where('id',$id)->first();
+
+        $user = Auth::user();
+        if (!empty($user->parent_id)) {
+            $user->parent->notify(new \App\Notifications\StatusDocument($document));
+        }        
+        
+    
+        return redirect()->route('documents.index')
+                        ->with('success','Document submit successfully');
+    }
+
+    public function revised(Request $request, Document $document)
+    {
+        $id = $request->input('doc_id');
+        $document = Document::where('id',$id)->first();
+
+        $user_id = $request->input('user_id');
+
+        $user = User::where('email', $user_id)->first();
+
+        // $user = Auth::user();
+        // if (!empty($user->parent_id)) {
+            $user->notify(new \App\Notifications\StatusDocument($document));
+        // }        
+        
+    
+        return redirect()->route('documents.index')
+                        ->with('success','Document submit successfully');
+    }
+
 }

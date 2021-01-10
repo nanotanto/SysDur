@@ -40,9 +40,11 @@ page[size="A5"] {
   width: 14.8cm;
   height: 21cm;
 }
-page[size="A5"][layout="portrait"] {
+page[size="A5"][layout="portrait"] {  
+  padding: 0.5cm 0cm 0.5cm 0cm;
   width: 21cm;
-  height: 14.8cm;  
+  height: 5cm;  
+  /*height: 14.8cm;  */
 }
 
 header,
@@ -221,21 +223,33 @@ footer {
             </div>
     </page>
 
+<page size="A5" layout="portrait">
+      <form action="{{ url('documents.submit') }}" method="POST" >
+      @csrf
+      <input name="id"  type="hidden" value="{{ $document->id }}">
+      
+            <div class="col-xs-12 col-sm-12 col-md-12 text-right">           
+              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+            </div><br/>
+      <form>
+
+<page size="A5" layout="portrait">
+  <form action="{{ url('documents.revised') }}" method="POST" >
+      @csrf
+      <input name="user_id"  type="hidden" value="{{ $document->user->email }}">
+      <input name="doc_id"  type="hidden" value="{{ $document->id }}">
+
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Comment:</strong>
                     <textarea type="text" name="terkait" class="form-control" placeholder="Comment"></textarea>
-                </div>
+                <br/>
+            
+              <button type="submit" name="revised" class="col-xs-12 btn btn-primary">Revised</button>
+                
             </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 text-left">
-              <button type="submit" class="col-xs-12 btn btn-primary">Revised</button>
             </div>
-
-            <div class="col-xs-6 col-sm-6 col-md-6 text-right">           
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
+  </form>
 </body>
 </html>
 
