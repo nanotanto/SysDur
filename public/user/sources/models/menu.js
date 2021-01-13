@@ -7,9 +7,9 @@ export const data = [
 	{id: "document", icon: "mdi mdi-book", value: "Document"},
 	{id: "forms", icon: "mdi mdi-pencil", value:"Form Request",  data:[
 		{ id: "fp4_form", value: "FP4"},
-		{ id: "lkp_form", value: "LKP"},
-		{ id: "ocard_form", value: "O-Card"},
-		{ id: "sasaran_form", value: "Sasaran & Program"}
+		// { id: "lkp_form", value: "LKP"},
+		// { id: "ocard_form", value: "O-Card"},
+		// { id: "sasaran_form", value: "Sasaran & Program"}
 	]},
 	// {id: "doc", icon: "mdi mdi-book", value:"Documentation", data:[
 	// 	{ id:"draft", value:"Draft Document SysDur"},
@@ -21,9 +21,9 @@ export const data = [
 	// {id: "layouts", icon: "mdi mdi-view-column", value:"View/ Report", data:[
 	// 	{ id: "fp4_view", value: "V/R FP4"}
 	// ]},
-	{id: "uis", icon: "mdi mdi-puzzle", value:"Evaluation", data:[
-		{ id: "test", value: "Competency Test"},
-		{ id: "result", value: "Test Result"}
+	{id: "quiz", icon: "mdi mdi-puzzle", value:"Evaluation", data:[
+		// { id: "test", value: "Competency Test"},
+		// { id: "result", value: "Test Result"}
 	]},
 	// {id: "inbox", icon: "mdi mdi-bell", value:"Inbox Notification"}
 						

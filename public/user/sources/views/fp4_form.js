@@ -7,134 +7,117 @@ export default class FP4FormView extends JetView{
 			rows:[
 				{ type:"header", template:"Form Request FP4"},
 				/*wjet::Settings*/
-				{ type:"form", paddingX:20,
-					"view": "form",
-					"rows": [
-										{ label: "<span style='font-size:20px'>FORM FP4</span>", align:"center", view:"label"},
-						{
-							"margin": 20,
-							"cols": [
+				{
+					"id": 1610522962845,
+					"cols": [
+						{ "autoheight": false, "view": "form", "id": 1610522963044, "elementsConfig": { "required": true, "labelPosition": "top" },
+							"rows": [
+								{ "label": "User ID", "view": "text", "id": 1610522963258, "name": "user_id", "labelWidth": 200 },
+								{ "view": "text", "label": "Nama Lengkap Pemohon", "name": "name", "id": 1610522963045, "labelWidth": 200 },
 								{
-									"margin": 10,
-									"rows": [
-										{ "label": "Change Status", "options": [
-											{ "id": "1", "value": "One" },
-											{ "id": "2", "value": "Two" },
-											{ "id": "3", "value": "Three" }
-										], "view": "select", "labelWidth": 160 },
-										{ "view": "label" },
-										{ "view": "text", "placeholder": "Type here...", "label": "FP4 Number", "labelWidth": 160, "id": 1607648333289 },
-										{ "label": "Company", "options": [
-											{ "id": "1", "value": "One" },
-											{ "id": "2", "value": "Two" },
-											{ "id": "3", "value": "Three" }
-										], "view": "select", "labelWidth": 160, "id": 1607648333290 },
-										{
-											"label": "Request Type",
-											"options": [
-												{ "id": "1", "value": "One" },
-												{ "id": "2", "value": "Two" },
-												{ "id": "3", "value": "Three" }
-											],
-											"view": "select",
-											"labelWidth": 160,
-											"id": 1607648333291
-										}
-									],
-									"id": 1607648333288
+									"label": "Department",
+									"options": "demo->5fd1ae8024ab08001840fc3a",
+									"view": "select",
+									"id": 1610522964018,
+									"labelWidth": 200,
+									"name": "department_id"
 								},
 								{
-									"margin": 10,
-									"rows": [
-										{ "label": "Approval History", "options": [
-											{ "id": "1", "value": "One" },
-											{ "id": "2", "value": "Two" },
-											{ "id": "3", "value": "Three" }
-										], "view": "select", "labelWidth": 160 },
-										{ "view": "label" },
-										{
-											"label": "Department",
-											"options": [
-												{ "id": "1", "value": "One" },
-												{ "id": "2", "value": "Two" },
-												{ "id": "3", "value": "Three" }
-											],
-											"view": "select",
-											"labelWidth": 160,
-											"id": 1607648333293
-										},
-										{ "label": "Date Required", "value": "2020-12-11 07:49:51", "view": "datepicker", "labelWidth": 160, "id": 1607648333294 }
-									],
-									"id": 1607648333292
-								}
-							],
-							"id": 1607648333287,
-							"height": 220
-						},
-						{ "label": "Document Name", "view": "text", "labelWidth": 160 },
-						{ "label": "Reason for Application", "view": "textarea", "height": 80, "labelWidth": 160 },
-						{ "view": "template", "template": "", "role": "placeholder", "borderless": 1 },
-						{
-							"height": 38,
-							"cols": [
+									"label": "Tanggal Permohonan",
+									"value": "2021-01-13 14:29:23",
+									"view": "datepicker",
+									"id": 1610522964428,
+									"labelWidth": 200,
+									"name": "date"
+								},
 								{
-									cols:[
-										{ "label": "Attachement", "view": "label", width:160 },
-										{ "label": "Upload", "view": "button" },{}
+									"label": "Jenis Permohonan",
+									"options": "demo->5fd1ae8024ab08001840fc3a",
+									"view": "select",
+									"id": 1610522964593,
+									"labelWidth": 200,
+									"name": "jenis"
+								},
+								{
+									"label": "Jumlah Dokumen",
+									"options": "demo->5fd1ae8024ab08001840fc3a",
+									"view": "select",
+									"id": 1610522964737,
+									"labelWidth": 200,
+									"name": "jumlah"
+								},
+								{ "label": "Nama Dokumen", "view": "text", "id": 1610522964773, "labelWidth": 200, "name": "dokumen" },
+								{ "label": "Alasan Permohonan", "view": "textarea", "name": "alasan" },
+								{
+									"height": 38,
+									"cols": [
+										{ "label": "Upload Attachment", "view": "button", "height": 0 },
+										{ "view": "template", "role": "placeholder", "borderless": 1 }
 									]
 								},
-								{ 
-									"label": "Request Approval",
-									"options": [
-										{ "id": "1", "value": "One" },
-										{ "id": "2", "value": "Two" },
-										{ "id": "3", "value": "Three" }
+								{ "view": "button", "css": "webix_primary", "label": "Submit", "id": 1610522963047 }
+							],
+							"type": "form",
+							"borderless": 1,
+							"scroll": "y"
+						},
+						{
+							"width": 0,
+							"rows": [
+								{
+									"url": "demo->5fd1ae8024ab08001840fc37",
+									"columns": [
+										{
+											"id": "user_id",
+											"header": "Nama Pemohon",
+											"fillspace": false,
+											"sort": "string",
+											"hidden": false,
+											"width": 150
+										},
+										{
+											"id": "department_id",
+											"header": "Department",
+											"sort": "string",
+											"fillspace": false,
+											"hidden": false,
+											"width": 150
+										},
+										{ "id": "date", "header": "Tanggal", "sort": "string", "fillspace": false, "hidden": false },
+										{
+											"id": "jenis",
+											"header": "Jenis Permohonan",
+											"sort": "string",
+											"width": 150,
+											"fillspace": false,
+											"hidden": false
+										},
+										{
+											"id": "dokumen",
+											"header": "Nama Dokumen",
+											"sort": "string",
+											"width": 150,
+											"fillspace": false,
+											"hidden": false
+										},
+										{
+											"id": "alasan",
+											"header": "Alasan Permohonan",
+											"sort": "string",
+											"width": 250,
+											"fillspace": false,
+											"hidden": false
+										}
 									],
-									"view": "select",
-									"height": 36,
-									"labelWidth": 160,
-									//"width": 515
-								}
+									"view": "datatable",
+									"gravity": 3,
+									"borderless": 0
+								},
+								{ "label": "Status Approval :", "view": "label", "borderless": 1 },
+								{ "url": "demo->5fd1ae8024ab08001840fc39", "view": "timeline", "layout": "x", "borderless": 1 }
 							]
-						},
-						{
-							"height": 38,
-							"cols": [
-								{ "label": "Change Status", "options": [
-									{ "id": "1", "value": "One" },
-									{ "id": "2", "value": "Two" },
-									{ "id": "3", "value": "Three" }
-								], "view": "select", "labelWidth": 160 },
-								{ "view": "template", "role": "placeholder", "borderless": true }
-							]
-						},
-						{ "label": "Result Analysis", "view": "textarea", "labelWidth": 160, "height": 80 },
-						{
-							"cols": [
-								{ "label": "SysDur PIC", "options": [
-									{ "id": "1", "value": "One" },
-									{ "id": "2", "value": "Two" },
-									{ "id": "3", "value": "Three" }
-								], "view": "select", "labelWidth": 160 },
-								{ "view": "template", "role": "placeholder", "borderless": 1 }
-							]
-						},
-						{
-							"cols": [
-								{ "label": "Date", "value": "2020-12-11 08:44:04", "view": "datepicker", "labelWidth": 160 },
-								{ "view": "template", "role": "placeholder", "borderless": 1 }
-							]
-						},
-						{
-							"cols": [
-								{ "view": "template", "role": "placeholder", "borderless": 1 },
-								{view:"button", label:"Submit", width:200}
-							]
-						},{gravity:2}
-					],
-					"id": 1607648333283,
-					"margin": 10,
-					"scroll": "y"
+						}
+					]
 				}
 			]
 		}
