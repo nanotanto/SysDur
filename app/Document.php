@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Document extends Model
 {
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
      /**
      * The attributes that are mass assignable.
      *	
@@ -28,6 +33,11 @@ class Document extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
 
 }

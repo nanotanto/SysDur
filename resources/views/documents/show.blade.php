@@ -43,7 +43,7 @@ page[size="A5"] {
 page[size="A5"][layout="portrait"] {  
   padding: 0.5cm 0cm 0.5cm 0cm;
   width: 21cm;
-  height: 5cm;  
+  height: 14.8cm;  
   /*height: 14.8cm;  */
 }
 
@@ -96,6 +96,8 @@ footer {
     /* padding-right: 1.5cm;
     padding-left: 1.5cm; */
   }
+
+  
 }
     </style>
 </head>
@@ -223,33 +225,59 @@ footer {
             </div>
     </page>
 
-<page size="A5" layout="portrait">
-      <form action="{{ url('documents.submit') }}" method="POST" >
-      @csrf
-      <input name="id"  type="hidden" value="{{ $document->id }}">
-      
-            <div class="col-xs-12 col-sm-12 col-md-12 text-right">           
-              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-            </div><br/>
-      <form>
+    
+  {{-- @include('documents.approved') --}}
+{{-- <page size="A4" layout=""> --}}
 
-<page size="A5" layout="portrait">
-  <form action="{{ url('documents.revised') }}" method="POST" >
+  <form action="{{ url('documents.submit') }}" method="POST" >
+    @csrf
+    <input name="id"  type="hidden" value="{{ $document->id }}">
+
+      <div class="col-xs-12 col-sm-12 col-md-12 text-center">           
+        <button type="submit" name="submit" class="btn btn-primary">Approved</button>
+      </div>
+  {{-- <form> --}}
+  <br/>
+  
+  <hr/>
+
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <h4>Display Comments</h4>
+  
+  @include('documents.commentsDisplay', ['comments' => $document->comments, 'document_id' => $document->id])
+
+  <hr />
+  <h4>Add comment</h4>
+  {{-- <form method="post" action="{{ route('comments.store') }}"> --}}
+      @csrf
+      <div class="form-group">
+          <textarea class="form-control" name="body"></textarea>
+          <input type="hidden" name="document_id" value="{{ $document->id }}" />
+      </div>
+
+      <input name="user_id"  type="hidden" value="{{ $document->user->email }}">
+      <input name="doc_id"  type="hidden" value="{{ $document->id }}">
+
+      <div class="form-group text-right">
+          <input type="submit" name="comment" class="btn btn-success" value="Add Comment & Request Revise" formaction="{{ route('comments.store') }}"/>
+      </div>
+  </form>
+  </div>
+  
+
+  {{-- <form action="{{ url('documents.revised') }}" method="POST" >
       @csrf
       <input name="user_id"  type="hidden" value="{{ $document->user->email }}">
       <input name="doc_id"  type="hidden" value="{{ $document->id }}">
 
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Comment:</strong>
-                    <textarea type="text" name="terkait" class="form-control" placeholder="Comment"></textarea>
-                <br/>
             
-              <button type="submit" name="revised" class="col-xs-12 btn btn-primary">Revised</button>
+                  <button type="submit" name="revised" class="col-xs-12 btn btn-primary">Revised</button>
                 
-            </div>
-            </div>
-  </form>
+              </div>
+  </form> --}}
+<hr/>
+ 
 </body>
 </html>
 

@@ -15,6 +15,35 @@
 CREATE DATABASE IF NOT EXISTS `sysdur` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `sysdur`;
 
+-- Dumping structure for table sysdur.comments
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `document_id` int(10) unsigned NOT NULL,
+  `parent_id` int(10) unsigned DEFAULT NULL,
+  `body` text COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table sysdur.comments: 0 rows
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` (`id`, `user_id`, `document_id`, `parent_id`, `body`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 1, 11, NULL, 'dsgdsgds', NULL, NULL, NULL),
+	(2, 4, 11, 1, 'dsgdsg', '2021-01-14 08:34:45', '2021-01-14 08:34:45', NULL),
+	(3, 4, 11, NULL, 'wwer3', '2021-01-14 08:35:01', '2021-01-14 08:35:01', NULL),
+	(4, 4, 11, NULL, 'asdfasd', '2021-01-14 08:35:52', '2021-01-14 08:35:52', NULL),
+	(5, 4, 11, NULL, 'dfgsdg32', '2021-01-14 08:39:09', '2021-01-14 08:39:09', NULL),
+	(6, 4, 11, NULL, 'test', '2021-01-14 08:44:29', '2021-01-14 08:44:29', NULL),
+	(7, 4, 11, NULL, 'test2', '2021-01-14 08:50:23', '2021-01-14 08:50:23', NULL),
+	(8, 4, 11, NULL, 'revised', '2021-01-14 08:50:55', '2021-01-14 08:50:55', NULL),
+	(9, 4, 11, NULL, 'fasdfa', '2021-01-14 08:52:04', '2021-01-14 08:52:04', NULL),
+	(10, 4, 11, NULL, 'perbaiki dulu', '2021-01-14 09:08:07', '2021-01-14 09:08:07', NULL),
+	(11, 4, 11, NULL, 'perbaiki', '2021-01-14 09:12:38', '2021-01-14 09:12:38', NULL);
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+
 -- Dumping structure for table sysdur.companies
 CREATE TABLE IF NOT EXISTS `companies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -66,16 +95,17 @@ CREATE TABLE IF NOT EXISTS `documents` (
   `file2` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table sysdur.documents: 4 rows
 /*!40000 ALTER TABLE `documents` DISABLE KEYS */;
-INSERT INTO `documents` (`id`, `no`, `name`, `no_rev`, `revisi`, `user_id`, `lingkup`, `tujuan`, `definisi`, `uraian`, `prosedur`, `lampiran`, `terkait`, `file1`, `file2`, `created_at`, `updated_at`) VALUES
-	(6, '3', 'Doc 3-1', 0, '', 0, '', '', '', '', '', '', '', '', '', '2020-12-24 06:38:52', '2020-12-24 06:39:30'),
-	(7, 'SOP-001', 'Creator', 0, '', 4, 'Ruang lingkup', 'Tujuan', 'Definisi', 'Uraian umum', 'Prosedur', '- lampiran', '- dokumen terkait', '1609625595.jpg', '1609583358.png', '2021-01-04 13:10:17', '2021-01-04 14:49:56'),
-	(8, 'SOP-002', 'SOP 2', 0, NULL, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1609583213.png', '1609583237.png', '2021-01-04 15:01:41', '2021-01-04 15:01:41'),
-	(11, 'SOP-01', 'pengendalian dokumen', 0, NULL, 4, 'Prosedur ini bertujuan untuk menjelaskan pengendalian dokumen dan catatan yang terkait dengan Sistem Manajemen Mutu', 'Prosedur ini mencakup pengendalian dokumen internal, dokumen eksternal dan catatan yang meliputi pembuatan, distribusi, perubahan, penyimpanan, dan pemusnahan', '4.1	Dokumen Internal adalah Dokumen yang berasal dari dalam perusahaan yang disusun untuk mendukung aktivitas Sistem Manajemen Mutu.\r\n4.2	Dokumen Eksternal adalah Dokumen yang berasal dari luar perusahaan yang digunakan sebagai pendukung aktivitas Sistem Manajemen Mutu.', '6.1	Dokumen dapat dibaca, siap diambil dan ditunjukan.\r\n6.2	Dokumen tersimpan dengan baik/ tidak rusak sesuai dengan ketentuan minimum masa simpan.\r\n6.3	Dokumen yang beredar di perusahaan adalah dokumen yang terbaru dan telah disahkan.', '5.1	Quality Assurance Department selanjutnya disebut QA,  bertanggung jawab terhadap pengendalian dokumen internal dan eksternal diantaranya :\r\nDokumen Internal\r\na.	Quality Manual\r\nb.	QA Rule\r\nc.	Standard Operating Procedure (SOP)\r\nd.	Quality Control Process Chart (QCPC) atau Control Plan\r\nDokumen Eksternal\r\na.	Quality Assurance Manual Customer\r\nb.	YGK\r\nc.	YQS\r\nd.	Standar Nasional Indonesia (SNI)\r\ne.	Drawing Produk\r\nf.	Dokumen lain dari customer\r\n5.2	Masing-masing Department bertanggung jawab terhadap pengendalan dokumen internal diantaranya:\r\na.	Instruksi Kerja (IK)\r\nb.	Standar Proses\r\nc.	Master Formulir/ Check Sheet\r\nd.	Catatan (Formulir/ Check Sheet yang telah diisi)', '3.1	ISO 9001:2015 dan IATF 16949:2016\r\n3.2	Quality Manual YPMI', '3.1	ISO 9001:2015 dan IATF 16949:2016\r\n3.2	Quality Manual YPMI', '1609918308.png', '1609918308.png', '2021-01-06 07:31:48', '2021-01-06 07:31:48');
+INSERT INTO `documents` (`id`, `no`, `name`, `no_rev`, `revisi`, `user_id`, `lingkup`, `tujuan`, `definisi`, `uraian`, `prosedur`, `lampiran`, `terkait`, `file1`, `file2`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(6, '3', 'Doc 3-1', 0, '', 0, '', '', '', '', '', '', '', '', '', '2020-12-24 06:38:52', '2020-12-24 06:39:30', NULL),
+	(7, 'SOP-001', 'Creator', 0, '', 4, 'Ruang lingkup', 'Tujuan', 'Definisi', 'Uraian umum', 'Prosedur', '- lampiran', '- dokumen terkait', '1609625595.jpg', '1609583358.png', '2021-01-04 13:10:17', '2021-01-04 14:49:56', NULL),
+	(8, 'SOP-002', 'SOP 2', 0, NULL, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1609583213.png', '1609583237.png', '2021-01-04 15:01:41', '2021-01-04 15:01:41', NULL),
+	(11, 'SOP-01', 'pengendalian dokumen', 0, NULL, 4, 'Prosedur ini bertujuan untuk menjelaskan pengendalian dokumen dan catatan yang terkait dengan Sistem Manajemen Mutu', 'Prosedur ini mencakup pengendalian dokumen internal, dokumen eksternal dan catatan yang meliputi pembuatan, distribusi, perubahan, penyimpanan, dan pemusnahan', '4.1	Dokumen Internal adalah Dokumen yang berasal dari dalam perusahaan yang disusun untuk mendukung aktivitas Sistem Manajemen Mutu.\r\n4.2	Dokumen Eksternal adalah Dokumen yang berasal dari luar perusahaan yang digunakan sebagai pendukung aktivitas Sistem Manajemen Mutu.', '6.1	Dokumen dapat dibaca, siap diambil dan ditunjukan.\r\n6.2	Dokumen tersimpan dengan baik/ tidak rusak sesuai dengan ketentuan minimum masa simpan.\r\n6.3	Dokumen yang beredar di perusahaan adalah dokumen yang terbaru dan telah disahkan.', '5.1	Quality Assurance Department selanjutnya disebut QA,  bertanggung jawab terhadap pengendalian dokumen internal dan eksternal diantaranya :\r\nDokumen Internal\r\na.	Quality Manual\r\nb.	QA Rule\r\nc.	Standard Operating Procedure (SOP)\r\nd.	Quality Control Process Chart (QCPC) atau Control Plan\r\nDokumen Eksternal\r\na.	Quality Assurance Manual Customer\r\nb.	YGK\r\nc.	YQS\r\nd.	Standar Nasional Indonesia (SNI)\r\ne.	Drawing Produk\r\nf.	Dokumen lain dari customer\r\n5.2	Masing-masing Department bertanggung jawab terhadap pengendalan dokumen internal diantaranya:\r\na.	Instruksi Kerja (IK)\r\nb.	Standar Proses\r\nc.	Master Formulir/ Check Sheet\r\nd.	Catatan (Formulir/ Check Sheet yang telah diisi)', '3.1	ISO 9001:2015 dan IATF 16949:2016\r\n3.2	Quality Manual YPMI', '3.1	ISO 9001:2015 dan IATF 16949:2016\r\n3.2	Quality Manual YPMI', '1609918308.png', '1609918308.png', '2021-01-06 07:31:48', '2021-01-06 07:31:48', NULL);
 /*!40000 ALTER TABLE `documents` ENABLE KEYS */;
 
 -- Dumping structure for table sysdur.failed_jobs
@@ -93,15 +123,55 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 /*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
 
+-- Dumping structure for table sysdur.fp4_forms
+CREATE TABLE IF NOT EXISTS `fp4_forms` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `department_id` int(11) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `jenis` varchar(255) DEFAULT NULL,
+  `jumlah` int(11) DEFAULT NULL,
+  `dokumen` text,
+  `alasan` text,
+  `file` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `analisa` text,
+  `admin_id` int(11) DEFAULT NULL,
+  `date_end` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- Dumping data for table sysdur.fp4_forms: 0 rows
+/*!40000 ALTER TABLE `fp4_forms` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fp4_forms` ENABLE KEYS */;
+
+-- Dumping structure for table sysdur.fp4_status
+CREATE TABLE IF NOT EXISTS `fp4_status` (
+  `id` int(11) NOT NULL,
+  `fp4_form_id` int(11) DEFAULT NULL,
+  `value` varchar(191) DEFAULT NULL,
+  `details` varchar(191) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- Dumping data for table sysdur.fp4_status: 0 rows
+/*!40000 ALTER TABLE `fp4_status` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fp4_status` ENABLE KEYS */;
+
 -- Dumping structure for table sysdur.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sysdur.migrations: 7 rows
+-- Dumping data for table sysdur.migrations: 8 rows
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
@@ -110,7 +180,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(4, '2020_12_23_053647_create_permission_tables', 1),
 	(5, '2020_12_23_053800_create_products_table', 2),
 	(6, '2020_12_23_083242_create_documents_table', 3),
-	(7, '2020_12_24_061544_create_notifications_table', 4);
+	(7, '2020_12_24_061544_create_notifications_table', 4),
+	(8, '2021_01_14_074006_create_comments_table', 5);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table sysdur.model_has_permissions
@@ -161,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   KEY `notifications_notifiable_type_notifiable_id_index` (`notifiable_type`,`notifiable_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sysdur.notifications: 12 rows
+-- Dumping data for table sysdur.notifications: 13 rows
 /*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
 INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `data`, `read_at`, `created_at`, `updated_at`) VALUES
 	('0cf3cc5c-2a13-4d8c-b14f-1bcc2b6fc24e', 'App\\Notifications\\StatusDocument', 'App\\User', 1, '[]', NULL, '2020-12-24 06:37:38', '2020-12-24 06:37:38'),
@@ -175,7 +246,25 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 	('a5a9155a-4e7a-490d-8135-4e71d26cc472', 'App\\Notifications\\StatusDocument', 'App\\User', 5, '[]', NULL, '2021-01-04 14:56:37', '2021-01-04 14:56:37'),
 	('3ff1e144-92f0-4dbd-bb39-63f6eadecaaf', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-04 15:01:44', '2021-01-04 15:01:44'),
 	('5dfabbe6-d787-4b59-a478-7b31bb9bdec4', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-06 07:31:54', '2021-01-06 07:31:54'),
-	('d90313d3-9612-4016-ad2a-4eb4cf2f4d11', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-06 07:38:17', '2021-01-06 07:38:17');
+	('d90313d3-9612-4016-ad2a-4eb4cf2f4d11', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-06 07:38:17', '2021-01-06 07:38:17'),
+	('bc825620-c583-4f7c-86c0-30d90ca65136', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 08:28:39', '2021-01-14 08:28:39'),
+	('bca1ba3d-2575-4bbe-abdb-6e17d4befc43', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 08:30:10', '2021-01-14 08:30:10'),
+	('b647af33-cee0-44fe-93b0-b26511121688', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 08:31:41', '2021-01-14 08:31:41'),
+	('882ecafb-0973-473a-98b4-0446c74ea9cd', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 08:33:59', '2021-01-14 08:33:59'),
+	('6661ab01-f862-47c5-9483-19ac258135fb', 'App\\Notifications\\StatusDocument', 'App\\User', 4, '[]', NULL, '2021-01-14 08:50:23', '2021-01-14 08:50:23'),
+	('a8498865-3032-41ba-adb4-164a60f6ca37', 'App\\Notifications\\StatusDocument', 'App\\User', 4, '[]', NULL, '2021-01-14 08:50:55', '2021-01-14 08:50:55'),
+	('3bb820b0-84fe-4775-93cc-722a6bc222d4', 'App\\Notifications\\StatusDocument', 'App\\User', 4, '[]', NULL, '2021-01-14 08:52:04', '2021-01-14 08:52:04'),
+	('a39b0bd5-deb5-4e4f-8564-44fa38170d59', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 08:56:00', '2021-01-14 08:56:00'),
+	('8d5e52aa-f323-4298-b51e-354ffe9ee490', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 08:58:07', '2021-01-14 08:58:07'),
+	('c2811ea6-0bc8-4f4d-9d79-a95c055d8f22', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 09:00:33', '2021-01-14 09:00:33'),
+	('0b373e8d-4ed8-446a-892f-a2b02f679563', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 09:00:52', '2021-01-14 09:00:52'),
+	('66d6f252-acb7-42c1-9c8f-7a8089ef5cbd', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 09:01:53', '2021-01-14 09:01:53'),
+	('2dd3f4f4-55ec-42cb-95cd-648ba5882868', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 09:07:18', '2021-01-14 09:07:18'),
+	('468630e7-1e8a-4f16-80fb-a1847b92a7fc', 'App\\Notifications\\StatusDocument', 'App\\User', 4, '[]', NULL, '2021-01-14 09:07:33', '2021-01-14 09:07:33'),
+	('2a03c9de-0703-4782-91f3-04466b7609fe', 'App\\Notifications\\StatusDocument', 'App\\User', 4, '[]', NULL, '2021-01-14 09:08:07', '2021-01-14 09:08:07'),
+	('79d0eaf7-d830-4872-8b46-9e4be97369cf', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 09:08:20', '2021-01-14 09:08:20'),
+	('bbc57bd6-a9a8-413c-aecf-f8e263f76b80', 'App\\Notifications\\StatusDocument', 'App\\User', 6, '[]', NULL, '2021-01-14 09:12:17', '2021-01-14 09:12:17'),
+	('1f387d5f-9576-4458-be65-76cc289da384', 'App\\Notifications\\StatusDocument', 'App\\User', 4, '[]', NULL, '2021-01-14 09:12:38', '2021-01-14 09:12:38');
 /*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 
 -- Dumping structure for table sysdur.password_resets
@@ -406,7 +495,7 @@ CREATE TABLE IF NOT EXISTS `tests` (
   KEY `tests_deleted_at_index` (`deleted_at`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sysdur.tests: 3 rows
+-- Dumping data for table sysdur.tests: 6 rows
 /*!40000 ALTER TABLE `tests` DISABLE KEYS */;
 INSERT INTO `tests` (`id`, `user_id`, `topic_id`, `result`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 2, NULL, '0', '2021-01-12 04:20:27', '2021-01-12 04:20:27', NULL),
@@ -432,7 +521,7 @@ CREATE TABLE IF NOT EXISTS `test_answers` (
   KEY `test_answers_deleted_at_index` (`deleted_at`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=FIXED;
 
--- Dumping data for table sysdur.test_answers: 7 rows
+-- Dumping data for table sysdur.test_answers: 12 rows
 /*!40000 ALTER TABLE `test_answers` DISABLE KEYS */;
 INSERT INTO `test_answers` (`id`, `user_id`, `test_id`, `question_id`, `correct`, `option_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 2, 1, 3, 0, 15, '2021-01-12 04:20:27', '2021-01-12 04:20:27', NULL),
@@ -494,10 +583,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table sysdur.users: 8 rows
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `nik`, `email`, `email_verified_at`, `password`, `company_id`, `department_id`, `position_id`, `parent_id`, `sign`, `role_id`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'superadmin', NULL, 'superadmin@gmail.com', NULL, '$2y$10$eogrMlhVQtn2AiWtsfCsiODBsVsiHxM7pm/XreNvdMpfxb1Antgzy', NULL, NULL, NULL, 0, NULL, 1, 'wKbeVEa62CXnKptAiwt7GsnJOXHgxLiRrshVmtqqbH4DXEIJisFldqbIYPK4', '2020-12-23 06:01:52', '2021-01-01 06:03:29', NULL),
-	(2, 'admin', NULL, 'admin@gmail.com', NULL, '$2y$10$L1WINbJPIyogyczrnWyj2.rPU.IbKqEWldgWzJsWsIcsICWMXnkzG', 0, 0, NULL, 0, NULL, 1, 'ziGqFLAVDcAw2rULIKLuxJf6pQC9iZphkcdmAoLBSBFL9Wg7jWn18l4gyAFJ', '2020-12-23 06:21:34', '2020-12-23 06:21:34', NULL),
-	(3, 'user', NULL, 'user@gmail.com', NULL, '$2y$10$N.f0NMXOwwfFbFz1SzsETeS/mAE2o3VY9fQcFfo7NeQFNpxLz/Dn6', 1, 1, 1, 0, NULL, NULL, 'LO6DyozQHQCjgD0KkoYokm7IJa9Wb7uJZ5l87G3AsbgrQOWrAzuAmsqq58kx', '2020-12-23 06:21:59', '2020-12-24 08:59:27', NULL),
-	(4, 'Creator', 'CR-01', 'creator@gmail.com', NULL, '$2y$10$.MHQLYzlsrokeG2PEEiz8OgXOPxqoD1o4Xku11BB1ucwnYc32M1cG', 1, 1, 1, 6, '1609625837.jpg', NULL, 'zMyGjm13LQNv5237zvF4cgRyOiOmDvEBVlwP2etrwSMbnAKCadVicw9gEshx', '2021-01-01 05:59:49', '2021-01-05 06:15:57', NULL),
+	(1, 'superadmin', NULL, 'superadmin@gmail.com', NULL, '$2y$10$eogrMlhVQtn2AiWtsfCsiODBsVsiHxM7pm/XreNvdMpfxb1Antgzy', NULL, NULL, NULL, 0, NULL, 1, 'rHaBXAJbQSve4uTFAXbjWKHJH8Y21PaWKJ8IN0vovtS8WYfiTkOxOqHnVFI6', '2020-12-23 06:01:52', '2021-01-01 06:03:29', NULL),
+	(2, 'admin', NULL, 'admin@gmail.com', NULL, '$2y$10$L1WINbJPIyogyczrnWyj2.rPU.IbKqEWldgWzJsWsIcsICWMXnkzG', 0, 0, NULL, 0, NULL, 1, 'Oqgu7p57YRamSXm6Zo3ZgvSQXZDIDFXQYYjzgW7sXZdgW7t45I1PY5Thr0Bw', '2020-12-23 06:21:34', '2020-12-23 06:21:34', NULL),
+	(3, 'user', NULL, 'user@gmail.com', NULL, '$2y$10$N.f0NMXOwwfFbFz1SzsETeS/mAE2o3VY9fQcFfo7NeQFNpxLz/Dn6', 1, 1, 1, 0, NULL, NULL, 'UKBKVNTBLbJuJprE1yFrLzW1UMNGYv1vRXwAkdzYod8xzxn832lS7KnM1zb1', '2020-12-23 06:21:59', '2020-12-24 08:59:27', NULL),
+	(4, 'Creator', 'CR-01', 'creator@gmail.com', NULL, '$2y$10$.MHQLYzlsrokeG2PEEiz8OgXOPxqoD1o4Xku11BB1ucwnYc32M1cG', 1, 1, 1, 6, '1609625837.jpg', NULL, 'FPo8iLuhQxUHHSaxNhfCXt4yXrB4WBJSIQyQdR6IbYB4BUc5Q6Zl30CCBsTn', '2021-01-01 05:59:49', '2021-01-05 06:15:57', NULL),
 	(5, 'Manager', 'MG-001', 'manager@gmail.com', NULL, '$2y$10$Od3iU7S8BQ9xCEpeDV2xQeei6VAoR5e7va9uZJGJdsd5PE2v5dTpa', 1, 1, 4, 0, '1609583213.png', NULL, NULL, '2021-01-02 10:26:53', '2021-01-02 10:26:53', NULL),
 	(6, 'Admin SysDur', 'AS-01', 'adminsysdur@gmail.com', NULL, '$2y$10$rgGzGgBOzruU.ODDrvY8lugVN37aKvYnQ60HqIkpU4lPS9sLpa3OO', 1, 1, 2, 7, '1609625780.jpg', NULL, NULL, '2021-01-02 22:13:15', '2021-01-02 22:16:21', NULL),
 	(7, 'Supervisor', 'SV-01', 'supervisor@gmail.com', NULL, '$2y$10$eVD.QZP2C2c0MBmMM5BPEOrYWusM4N75AwQn.F6njxCxfm.sUUhX2', 1, 1, 3, 5, '1609625675.jpg', NULL, NULL, '2021-01-02 22:14:35', '2021-01-02 22:14:35', NULL),
@@ -519,7 +608,7 @@ CREATE TABLE IF NOT EXISTS `user_actions` (
   KEY `user_actions_deleted_at_index` (`deleted_at`)
 ) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sysdur.user_actions: 49 rows
+-- Dumping data for table sysdur.user_actions: 63 rows
 /*!40000 ALTER TABLE `user_actions` DISABLE KEYS */;
 INSERT INTO `user_actions` (`id`, `user_id`, `action`, `action_model`, `action_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 1, 'created', 'users', 2, '2021-01-11 05:42:38', '2021-01-11 05:42:38', NULL),

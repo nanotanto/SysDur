@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('departments','DepartmentController');
     Route::resource('positions','PositionController');
     Route::resource('documents','DocumentController');
+    Route::resource('comments','CommentController');
 });
 
 Route::post('documents.revised', 'DocumentController@revised');
