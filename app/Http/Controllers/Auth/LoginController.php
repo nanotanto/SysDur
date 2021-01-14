@@ -43,9 +43,9 @@ class LoginController extends Controller
     {
         
         if($user->hasAnyRole(['Superadmin','Admin'])){
-            return redirect('/');
+            return redirect('/admin');
         } else {
-            return redirect('/welcome');
+            return redirect('/');
         }
 
     }

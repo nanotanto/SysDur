@@ -21,10 +21,12 @@ export const data = [
 	// {id: "layouts", icon: "mdi mdi-view-column", value:"View/ Report", data:[
 	// 	{ id: "fp4_view", value: "V/R FP4"}
 	// ]},
-	{id: "quiz", icon: "mdi mdi-puzzle", value:"Evaluation", data:[
-		// { id: "test", value: "Competency Test"},
-		// { id: "result", value: "Test Result"}
-	]},
+	{id: "quiz", icon: "mdi mdi-puzzle", value:"Evaluation", 		
+		data:[
+			// { id: "test", value: "Competency Test"},
+			// { id: "result", value: "Test Result"}
+		]
+	},
 	// {id: "inbox", icon: "mdi mdi-bell", value:"Inbox Notification"}
 						
 ];
