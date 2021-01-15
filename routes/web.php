@@ -32,3 +32,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::post('documents.revised', 'DocumentController@revised');
 Route::post('documents.submit', 'DocumentController@submit');
+
+
+Route::get('documents.publish', 'DocumentController@publish');

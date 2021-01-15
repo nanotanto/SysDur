@@ -34,9 +34,9 @@ export default class DashboardView extends JetView{
 					columns: [
 						{ id:"no",	header:["Document No.",{ content:"serverFilter"}], sort:"server",	width:180,	 template:"<a class='link' target='_blank' href='#file#'>#no#</a>"},
 						{ id:"name",  fillspace:true,	header:["Document Name",{ content:"serverFilter"}], sort:"server"},
-						{ id:"rev_no",	header:["Rev."], width:50},
-						{ id:"effective_date",	header:["effective Date"], width:100},
-						{ id:"department",	header:["Department",{ content:"serverFilter"}], sort:"server", width:150},
+						{ id:"no_rev",	header:["Rev."], width:50},
+						{ id:"date",	header:["effective Date"], width:100},
+						{ id:"department_id",	header:["Department",{ content:"serverFilter"}], sort:"server", width:150},
 						{ id:"detail", header:"", width:70, template:"<a class='detail' href='#'>Detail</a>"}
 						
 					],					

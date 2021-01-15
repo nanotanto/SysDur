@@ -220,4 +220,10 @@ class DocumentController extends Controller
                         ->with('success','Document submit successfully');
     }
 
+    public function publish()
+    {
+        $document = Document::where('status',1)->get();
+        return response()->json($document);
+    }
+
 }
