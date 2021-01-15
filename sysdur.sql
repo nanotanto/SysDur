@@ -83,7 +83,10 @@ CREATE TABLE IF NOT EXISTS `documents` (
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `no_rev` int(11) NOT NULL DEFAULT '0',
   `revisi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date` date DEFAULT NULL,
   `user_id` int(11) NOT NULL,
+  `department_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
   `lingkup` text COLLATE utf8_unicode_ci,
   `tujuan` text COLLATE utf8_unicode_ci,
   `definisi` text COLLATE utf8_unicode_ci,
@@ -101,11 +104,11 @@ CREATE TABLE IF NOT EXISTS `documents` (
 
 -- Dumping data for table sysdur.documents: 4 rows
 /*!40000 ALTER TABLE `documents` DISABLE KEYS */;
-INSERT INTO `documents` (`id`, `no`, `name`, `no_rev`, `revisi`, `user_id`, `lingkup`, `tujuan`, `definisi`, `uraian`, `prosedur`, `lampiran`, `terkait`, `file1`, `file2`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(6, '3', 'Doc 3-1', 0, '', 0, '', '', '', '', '', '', '', '', '', '2020-12-24 06:38:52', '2020-12-24 06:39:30', NULL),
-	(7, 'SOP-001', 'Creator', 0, '', 4, 'Ruang lingkup', 'Tujuan', 'Definisi', 'Uraian umum', 'Prosedur', '- lampiran', '- dokumen terkait', '1609625595.jpg', '1609583358.png', '2021-01-04 13:10:17', '2021-01-04 14:49:56', NULL),
-	(8, 'SOP-002', 'SOP 2', 0, NULL, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1609583213.png', '1609583237.png', '2021-01-04 15:01:41', '2021-01-04 15:01:41', NULL),
-	(11, 'SOP-01', 'pengendalian dokumen', 0, NULL, 4, 'Prosedur ini bertujuan untuk menjelaskan pengendalian dokumen dan catatan yang terkait dengan Sistem Manajemen Mutu', 'Prosedur ini mencakup pengendalian dokumen internal, dokumen eksternal dan catatan yang meliputi pembuatan, distribusi, perubahan, penyimpanan, dan pemusnahan', '4.1	Dokumen Internal adalah Dokumen yang berasal dari dalam perusahaan yang disusun untuk mendukung aktivitas Sistem Manajemen Mutu.\r\n4.2	Dokumen Eksternal adalah Dokumen yang berasal dari luar perusahaan yang digunakan sebagai pendukung aktivitas Sistem Manajemen Mutu.', '6.1	Dokumen dapat dibaca, siap diambil dan ditunjukan.\r\n6.2	Dokumen tersimpan dengan baik/ tidak rusak sesuai dengan ketentuan minimum masa simpan.\r\n6.3	Dokumen yang beredar di perusahaan adalah dokumen yang terbaru dan telah disahkan.', '5.1	Quality Assurance Department selanjutnya disebut QA,  bertanggung jawab terhadap pengendalian dokumen internal dan eksternal diantaranya :\r\nDokumen Internal\r\na.	Quality Manual\r\nb.	QA Rule\r\nc.	Standard Operating Procedure (SOP)\r\nd.	Quality Control Process Chart (QCPC) atau Control Plan\r\nDokumen Eksternal\r\na.	Quality Assurance Manual Customer\r\nb.	YGK\r\nc.	YQS\r\nd.	Standar Nasional Indonesia (SNI)\r\ne.	Drawing Produk\r\nf.	Dokumen lain dari customer\r\n5.2	Masing-masing Department bertanggung jawab terhadap pengendalan dokumen internal diantaranya:\r\na.	Instruksi Kerja (IK)\r\nb.	Standar Proses\r\nc.	Master Formulir/ Check Sheet\r\nd.	Catatan (Formulir/ Check Sheet yang telah diisi)', '3.1	ISO 9001:2015 dan IATF 16949:2016\r\n3.2	Quality Manual YPMI', '3.1	ISO 9001:2015 dan IATF 16949:2016\r\n3.2	Quality Manual YPMI', '1609918308.png', '1609918308.png', '2021-01-06 07:31:48', '2021-01-06 07:31:48', NULL);
+INSERT INTO `documents` (`id`, `no`, `name`, `no_rev`, `revisi`, `date`, `user_id`, `department_id`, `status`, `lingkup`, `tujuan`, `definisi`, `uraian`, `prosedur`, `lampiran`, `terkait`, `file1`, `file2`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(6, '3', 'Doc 3-1', 0, '', '2021-01-04', 0, 0, 0, '', '', '', '', '', '', '', '', '', '2020-12-24 06:38:52', '2021-01-15 06:30:58', '2021-01-15 06:30:58'),
+	(7, 'SOP-001', 'Creator', 0, '', '2021-01-04', 4, 0, 1, 'Ruang lingkup', 'Tujuan', 'Definisi', 'Uraian umum', 'Prosedur', '- lampiran', '- dokumen terkait', '1609625595.jpg', '1609583358.png', '2021-01-04 13:10:17', '2021-01-15 06:31:37', '2021-01-15 06:31:37'),
+	(8, 'SOP-002', 'SOP 2', 0, NULL, '2021-01-04', 4, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1609583213.jpg', '1609583237.jpg', '2021-01-04 15:01:41', '2021-01-15 06:34:13', '2021-01-15 06:34:13'),
+	(11, 'SOP-01', 'pengendalian dokumen', 0, NULL, '2021-01-04', 4, 0, 1, 'Prosedur ini bertujuan untuk menjelaskan pengendalian dokumen dan catatan yang terkait dengan Sistem Manajemen Mutu', 'Prosedur ini mencakup pengendalian dokumen internal, dokumen eksternal dan catatan yang meliputi pembuatan, distribusi, perubahan, penyimpanan, dan pemusnahan', '4.1	Dokumen Internal adalah Dokumen yang berasal dari dalam perusahaan yang disusun untuk mendukung aktivitas Sistem Manajemen Mutu.\r\n4.2	Dokumen Eksternal adalah Dokumen yang berasal dari luar perusahaan yang digunakan sebagai pendukung aktivitas Sistem Manajemen Mutu.', '6.1	Dokumen dapat dibaca, siap diambil dan ditunjukan.\r\n6.2	Dokumen tersimpan dengan baik/ tidak rusak sesuai dengan ketentuan minimum masa simpan.\r\n6.3	Dokumen yang beredar di perusahaan adalah dokumen yang terbaru dan telah disahkan.', '5.1	Quality Assurance Department selanjutnya disebut QA,  bertanggung jawab terhadap pengendalian dokumen internal dan eksternal diantaranya :\r\nDokumen Internal\r\na.	Quality Manual\r\nb.	QA Rule\r\nc.	Standard Operating Procedure (SOP)\r\nd.	Quality Control Process Chart (QCPC) atau Control Plan\r\nDokumen Eksternal\r\na.	Quality Assurance Manual Customer\r\nb.	YGK\r\nc.	YQS\r\nd.	Standar Nasional Indonesia (SNI)\r\ne.	Drawing Produk\r\nf.	Dokumen lain dari customer\r\n5.2	Masing-masing Department bertanggung jawab terhadap pengendalan dokumen internal diantaranya:\r\na.	Instruksi Kerja (IK)\r\nb.	Standar Proses\r\nc.	Master Formulir/ Check Sheet\r\nd.	Catatan (Formulir/ Check Sheet yang telah diisi)', '3.1	ISO 9001:2015 dan IATF 16949:2016\r\n3.2	Quality Manual YPMI', '3.1	ISO 9001:2015 dan IATF 16949:2016\r\n3.2	Quality Manual YPMI', '1609918308.png', '1609918308.png', '2021-01-06 07:31:48', '2021-01-06 07:31:48', NULL);
 /*!40000 ALTER TABLE `documents` ENABLE KEYS */;
 
 -- Dumping structure for table sysdur.failed_jobs
@@ -289,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sysdur.permissions: 24 rows
+-- Dumping data for table sysdur.permissions: 25 rows
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 	(1, 'role-list', 'web', '2020-12-23 05:59:36', '2020-12-23 05:59:36'),
@@ -450,7 +453,7 @@ CREATE TABLE IF NOT EXISTS `role_has_permissions` (
   KEY `role_has_permissions_role_id_foreign` (`role_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table sysdur.role_has_permissions: 28 rows
+-- Dumping data for table sysdur.role_has_permissions: 30 rows
 /*!40000 ALTER TABLE `role_has_permissions` DISABLE KEYS */;
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 	(1, 1),
@@ -481,6 +484,7 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 	(22, 1),
 	(23, 1),
 	(24, 1),
+	(25, 1),
 	(25, 2);
 /*!40000 ALTER TABLE `role_has_permissions` ENABLE KEYS */;
 
@@ -586,7 +590,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `nik`, `email`, `email_verified_at`, `password`, `company_id`, `department_id`, `position_id`, `parent_id`, `sign`, `role_id`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'superadmin', NULL, 'superadmin@gmail.com', NULL, '$2y$10$eogrMlhVQtn2AiWtsfCsiODBsVsiHxM7pm/XreNvdMpfxb1Antgzy', NULL, NULL, NULL, 0, NULL, 1, 'LImX8FAOPrWhj23mKzgeVV7Nliabf0HattjO6Nj3hLkO5rMCGDP1PJ53KzQy', '2020-12-23 06:01:52', '2021-01-01 06:03:29', NULL),
-	(2, 'admin', NULL, 'admin@gmail.com', NULL, '$2y$10$L1WINbJPIyogyczrnWyj2.rPU.IbKqEWldgWzJsWsIcsICWMXnkzG', 0, 0, NULL, 0, NULL, 1, 'Oqgu7p57YRamSXm6Zo3ZgvSQXZDIDFXQYYjzgW7sXZdgW7t45I1PY5Thr0Bw', '2020-12-23 06:21:34', '2020-12-23 06:21:34', NULL),
+	(2, 'admin', NULL, 'admin@gmail.com', NULL, '$2y$10$L1WINbJPIyogyczrnWyj2.rPU.IbKqEWldgWzJsWsIcsICWMXnkzG', 0, 0, NULL, 0, NULL, 1, '2SpEKW1EdVXRvkvn45cRZ1vB2k7twYT7DYWfAgCMupvs9jpRtkivX4gsubPs', '2020-12-23 06:21:34', '2020-12-23 06:21:34', NULL),
 	(3, 'user', NULL, 'user@gmail.com', NULL, '$2y$10$N.f0NMXOwwfFbFz1SzsETeS/mAE2o3VY9fQcFfo7NeQFNpxLz/Dn6', 1, 1, 1, 0, NULL, NULL, 'UKBKVNTBLbJuJprE1yFrLzW1UMNGYv1vRXwAkdzYod8xzxn832lS7KnM1zb1', '2020-12-23 06:21:59', '2020-12-24 08:59:27', NULL),
 	(4, 'Creator', 'CR-01', 'creator@gmail.com', NULL, '$2y$10$.MHQLYzlsrokeG2PEEiz8OgXOPxqoD1o4Xku11BB1ucwnYc32M1cG', 1, 1, 1, 6, '1609625837.jpg', NULL, 'vjYBZxEHHkrgbryaeTPjIBxvEYB73oAOn1vIIFQNjoOawHGDxrkPGLrwmGlW', '2021-01-01 05:59:49', '2021-01-05 06:15:57', NULL),
 	(5, 'Manager', 'MG-001', 'manager@gmail.com', NULL, '$2y$10$Od3iU7S8BQ9xCEpeDV2xQeei6VAoR5e7va9uZJGJdsd5PE2v5dTpa', 1, 1, 4, 0, '1609583213.png', NULL, NULL, '2021-01-02 10:26:53', '2021-01-02 10:26:53', NULL),
@@ -610,7 +614,7 @@ CREATE TABLE IF NOT EXISTS `user_actions` (
   KEY `user_actions_deleted_at_index` (`deleted_at`)
 ) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table sysdur.user_actions: 63 rows
+-- Dumping data for table sysdur.user_actions: 65 rows
 /*!40000 ALTER TABLE `user_actions` DISABLE KEYS */;
 INSERT INTO `user_actions` (`id`, `user_id`, `action`, `action_model`, `action_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 1, 'created', 'users', 2, '2021-01-11 05:42:38', '2021-01-11 05:42:38', NULL),
