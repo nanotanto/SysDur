@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4 col-md-offset-3">
             <h1 class="text-center" style="color: white">SysDur Quiz</h1>
             <br />
             <div class="panel panel-default">
@@ -49,14 +49,14 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <label>
                                     <input type="checkbox"
                                            name="remember">Remember me
                                 </label>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
@@ -64,13 +64,13 @@
                                         class="btn btn-primary">
                                     Login
                                 </button>
-                                <a href="{{ route('auth.register') }}"
+                                {{-- <a href="{{ route('auth.register') }}"
                                         class="btn btn-default">
                                     Register
                                 </a>
                                 <br>
                                 <a href="{{ route('auth.password.reset') }}">Forgot password</a>
-                                <br>
+                                <br> --}}
                                 
                             </div>
                         </div>

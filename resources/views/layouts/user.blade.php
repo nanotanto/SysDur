@@ -16,8 +16,8 @@
 
     <link href="{{ asset('user/codebase/myapp.css') }}" rel="stylesheet">
 
-    <script type="text/javascript" src="{{ asset('codebase/webix/webix.min.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('codebase/webix/skins/compact.min.css') }}">
+    <script type="text/javascript" src="{{ asset('webix/webix.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('webix/skins/compact.min.css') }}">
 
     <link rel="stylesheet" href="{{asset('MaterialDesign/css/materialdesignicons.css')}}" type="text/css" charset="utf-8">
     

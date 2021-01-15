@@ -7,7 +7,7 @@
 
 <body class="page-header-fixed">
 
-    @include('partials.analytics')
+    {{-- @include('partials.analytics') --}}
 
     <!-- <div style="margin-top: 10%;"></div> -->
 

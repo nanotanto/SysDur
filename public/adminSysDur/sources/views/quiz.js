@@ -5,7 +5,7 @@ export default class QuizView extends JetView{
 		return {
             type:"space",
 			rows:[
-				{ type:"header", template:"Evaluation"},
+				{ type:"header", template:"Quiz"},
 				/*wjet::Settings*/
 				{
 					view:"iframe", 
