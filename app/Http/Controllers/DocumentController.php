@@ -226,4 +226,9 @@ class DocumentController extends Controller
         return response()->json($document);
     }
 
+    public function view(Document $document)
+    {
+        return view('documents.view',compact('document'));
+    }
+
 }

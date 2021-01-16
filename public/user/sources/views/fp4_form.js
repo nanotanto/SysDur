@@ -65,7 +65,7 @@ export default class FP4FormView extends JetView{
 							"width": 0,
 							"rows": [
 								{
-									"url": "demo->5fd1ae8024ab08001840fc37",
+									"url": "fp4forms_open",
 									"columns": [
 										{
 											"id": "user_id",

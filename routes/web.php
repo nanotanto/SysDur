@@ -28,10 +28,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('positions','PositionController');
     Route::resource('documents','DocumentController');
     Route::resource('comments','CommentController');
+    Route::resource('fp4forms','Fp4FormController');
 });
 
 Route::post('documents.revised', 'DocumentController@revised');
 Route::post('documents.submit', 'DocumentController@submit');
 
+Route::get('documents_publish', 'DocumentController@publish');
+Route::get('documents_view/{document}', 'DocumentController@view');
 
-Route::get('documents.publish', 'DocumentController@publish');
+Route::get('fp4forms_open', 'Fp4FormController@open');
