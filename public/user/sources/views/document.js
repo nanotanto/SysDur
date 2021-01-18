@@ -1,6 +1,8 @@
 import {JetView} from "webix-jet";
+import {documents} from "models/documents";
 
-export default class DashboardView extends JetView{
+
+export default class DocumentsView extends JetView{
 	config(){
 		return {
 			type:"space",
@@ -31,16 +33,17 @@ export default class DashboardView extends JetView{
 					view: "datatable",
 					id: "tbl_document",
 					select: true,
+					scroll:"y",
 					columns: [
-						{ id:"no",	header:["Document No.",{ content:"serverFilter"}], sort:"server",	width:180,	 template:"<a class='link' target='_blank' href='documents_view/#id#'>#no#</a>"},
-						{ id:"name",  fillspace:true,	header:["Document Name",{ content:"serverFilter"}], sort:"server"},
+						{ id:"no",	header:["Document No.",{ content:"textFilter"}], sort:"text",	width:180,	 template:"<a class='link' target='_blank' href='documents/#id#'>#no#</a>"},
+						{ id:"name",  fillspace:true,	header:["Document Name",{ content:"textFilter"}], sort:"text"},
 						{ id:"no_rev",	header:["Rev."], width:50},
 						{ id:"date",	header:["effective Date"], width:100},
-						{ id:"department_id",	header:["Department",{ content:"serverFilter"}], sort:"server", width:150},
+						{ id:"department_id",	header:["Department",{ content:"textFilter"}], sort:"text", width:150},
 						{ id:"detail", header:"", width:70, template:"<a class='detail' href='#'>Detail</a>"}
 						
 					],
-					url:"documents_publish",					
+					// url:"documents.publish",					
 					on:{
 						"onresize":webix.once(function(){ 
 							this.adjustRowHeight("name", true); 
@@ -56,5 +59,8 @@ export default class DashboardView extends JetView{
 				}
 			]
 		};
+	}	
+	init(){
+		$$('tbl_document').sync(documents);
 	}
 }

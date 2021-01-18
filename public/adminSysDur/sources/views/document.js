@@ -1,4 +1,5 @@
 import {JetView} from "webix-jet";
+import {documents} from "models/documents";
 
 export default class DashboardView extends JetView{
 	config(){
@@ -55,5 +56,8 @@ export default class DashboardView extends JetView{
 				}
 			]
 		};
+	}
+	init(){
+		$$('tbl_document').sync(documents);
 	}
 }
