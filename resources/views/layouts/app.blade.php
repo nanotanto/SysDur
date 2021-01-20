@@ -13,11 +13,108 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <!-- Webix -->
     <script type="text/javascript" src="{{ asset('webix/webix.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('webix/skins/compact.min.css') }}">
+    <!-- Component TinyMCE Text Editor -->
+    <script type="text/javascript" src="{{ asset('webix/components/tinymce/tinymce.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ asset('tinymce/tinymce.min.js') }}"></script> -->
 
     <link rel="stylesheet" href="{{asset('MaterialDesign/css/materialdesignicons.css')}}" type="text/css" charset="utf-8">
+    
+    <style type="text/css">
+        body {
+  background: rgb(204,204,204); 
+}
+page {
+  padding: 4cm 1.5cm 4cm 1.5cm;
+  position: relative;
+  background: white;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+page[size="A4"] {  
+  width: 21cm;
+  height: 29.7cm; 
+}
+page[size="A4"][layout="portrait"] {
+  width: 29.7cm;
+  height: 21cm;  
+}
+page[size="A3"] {
+  width: 29.7cm;
+  height: 42cm;
+}
+page[size="A3"][layout="portrait"] {
+  width: 42cm;
+  height: 29.7cm;  
+}
+page[size="A5"] {
+  width: 14.8cm;
+  height: 21cm;
+}
+page[size="A5"][layout="portrait"] {  
+  padding: 0.5cm 0cm 0.5cm 0cm;
+  width: 21cm;
+  height: 14.8cm;  
+  /*height: 14.8cm;  */
+}
+
+header,
+footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding-right: 1.5cm;
+  padding-left: 1.5cm;
+  text-align: center;
+}
+
+header {
+  top: 0;
+  padding-top: 4mm;
+  padding-bottom: 3mm;
+}
+footer {
+  bottom: 0;
+  color: #000;
+  padding-top: 3mm;
+  padding-bottom: 4mm;
+}
+
+@media print {
+  body, page {    
+  /* width: 21cm;
+  height: 29.7cm;  */
+  font-size: 12pt;
+  padding-top: 2.5cm;
+  padding-right: 0px;
+  padding-bottom: 2.5cm;
+  padding-left: 0px;
+            border: initial;
+            border-radius: initial;
+            width: initial;
+            min-height: initial;
+            box-shadow: initial;
+            background: initial;
+            page-break-after: always;
+  }
+  header,
+  footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #ccc;
+    /* padding-right: 1.5cm;
+    padding-left: 1.5cm; */
+  }
+
+  
+}
+    </style>
     
 </head>
 <body>

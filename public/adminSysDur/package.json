@@ -34,6 +34,7 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "tinymce": "^5.6.2",
     "webix": "^8.1.0",
     "webix-jet": "^2.1.2"
   }

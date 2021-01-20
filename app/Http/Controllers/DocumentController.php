@@ -231,4 +231,19 @@ class DocumentController extends Controller
         return view('documents.view',compact('document'));
     }
 
+    public function upload(Request $request){
+        $fileName=$request->file('file')->getClientOriginalName();
+        $path=$request->file('file')->storeAs('uploads', $fileName, 'public');
+        return response()->json(['location'=>"/storage/$path"]); 
+        
+        /*$imgpath = request()->file('file')->store('uploads', 'public'); 
+        return response()->json(['location' => "/storage/$imgpath"]);*/
+    }
+
+    public function save(Request $request){
+        $document = Document::create($request->all());
+
+        return redirect('/admin#!/top/draft')
+                        ->with('success','Document created successfully.');
+    }
 }

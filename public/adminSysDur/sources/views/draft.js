@@ -72,10 +72,12 @@ export default class DashboardView extends JetView{
 							"view": "toolbar",
 							"cols": [
 								{ "view": "label", "label": "List Document" },
-								{ "label": "View All Document", "view": "button" },
-								{ "label": "View Draft Document", "view": "button" },
-								{ "label": "Revision Document", "view": "button", "name": "revisi" },
-								{ "label": "Create New Document", "view": "button", "name": "new" }
+								{ "label": "View All", "view": "button" },
+								{ "label": "View Draft", "view": "button" },
+								// { "label": "Revision Document", "view": "button", "name": "revisi" },
+								{ "label": "Create New Document", "view": "button", "name": "new",
+									click:() => this.show("forms.documentform")
+								}
 							]
 						},
 						{

@@ -38,3 +38,11 @@ Route::get('documents_publish', 'DocumentController@publish');
 Route::get('documents_view/{document}', 'DocumentController@view');
 
 Route::get('fp4forms_open', 'Fp4FormController@open');
+
+Route::post('/upload', 'DocumentController@upload');
+
+Route::post('/documents/store', 'DocumentController@save');
+
+Route::get('/documents/storage/uploads/{id}', function ($id) {
+	return redirect('/storage/uploads/'.$id);
+});
