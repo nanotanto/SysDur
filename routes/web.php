@@ -38,6 +38,11 @@ Route::get('documents_publish', 'DocumentController@publish');
 Route::get('documents_view/{document}', 'DocumentController@view');
 
 Route::get('fp4forms_open', 'Fp4FormController@open');
+Route::get('user_id', 'Fp4FormController@user_id');
+Route::get('department_id', 'Fp4FormController@department_id');
+Route::post('submitForm', 'Fp4FormController@submitForm');
+
+Route::post('/uploadfile', 'UploadController@uploadfile');
 
 Route::post('/upload', 'DocumentController@upload');
 

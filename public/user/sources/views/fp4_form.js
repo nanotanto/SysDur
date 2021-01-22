@@ -1,5 +1,7 @@
 import {JetView} from "webix-jet";
 
+var url = window.location.protocol +"//"+ window.location.hostname+":"+window.location.port+window.location.pathname;
+
 export default class FP4FormView extends JetView{
 	config(){
 		return {
@@ -12,29 +14,32 @@ export default class FP4FormView extends JetView{
 						{
 							"id": 1610522962845,
 							"cols": [
-								{ "autoheight": false, "view": "form", "id": 1610522963044, "elementsConfig": { "required": true, "labelPosition": "top" },
+								{ "autoheight": false, "view": "form", "id": "formrequest", "elementsConfig": { "required": false, "labelPosition": "top" },
 									"rows": [
-										{ "label": "User ID", "view": "text", "id": 1610522963258, "name": "user_id", "labelWidth": 200 },
-										{ "view": "text", "label": "Nama Lengkap Pemohon", "name": "name", "id": 1610522963045, "labelWidth": 200 },
+										{ "label": "Nama Lengkap Pemohon", "view": "select", 
+											"options": url+"/user_id", "name": "user_id", "labelWidth": 200 },
+										// { "view": "text", "label": "Nama Lengkap Pemohon", "name": "name", "id": 1610522963045, "labelWidth": 200 },
 										{
 											"label": "Department",
-											"options": "demo->5fd1ae8024ab08001840fc3a",
+											"options": url+"/department_id",
+											// url:"/department_id",
 											"view": "select",
 											"id": 1610522964018,
 											"labelWidth": 200,
 											"name": "department_id"
 										},
-										{
-											"label": "Tanggal Permohonan",
-											"value": "2021-01-13 14:29:23",
-											"view": "datepicker",
-											"id": 1610522964428,
-											"labelWidth": 200,
-											"name": "date"
-										},
+										// {
+										// 	"label": "Tanggal Permohonan",
+										// 	// "value": "2021-01-13 14:29:23",
+										// 	"view": "datepicker",
+										// 	format:"%Y-%m-%d",
+										// 	"id": 1610522964428,
+										// 	"labelWidth": 200,
+										// 	"name": "date"
+										// },
 										{
 											"label": "Jenis Permohonan",
-											"options": "demo->5fd1ae8024ab08001840fc3a",
+											"options": ["Penambahan Dokumen Baru","Perubahan Dokumen"],
 											"view": "select",
 											"id": 1610522964593,
 											"labelWidth": 200,
@@ -42,7 +47,7 @@ export default class FP4FormView extends JetView{
 										},
 										{
 											"label": "Jumlah Dokumen",
-											"options": "demo->5fd1ae8024ab08001840fc3a",
+											"options": ["1","2","3","4",'5','6','7','8','9','10'],
 											"view": "select",
 											"id": 1610522964737,
 											"labelWidth": 200,
@@ -53,21 +58,43 @@ export default class FP4FormView extends JetView{
 										{
 											"height": 38,
 											"cols": [
-												{ "label": "Upload Attachment", "view": "button", "height": 0 },
-												{ "view": "template", "role": "placeholder", "borderless": 1 }
+												{ 
+											      view: "uploader", id:"upl1", 
+											      autosend:true, value: 'Upload file', name:"file",
+											      link:"mylist",  
+											      upload:"uploadfile"
+											    },
+											    {
+											      view:"list",  id:"mylist", type:"uploader",
+											      autoheight:true, borderless:true
+											    }
 											]
 										},
-										{ "view": "button", "css": "webix_primary", "label": "Submit", "id": 1610522963047 }
+										{ "view": "button", "css": "webix_primary", "label": "Submit", click: function() {										      
+
+										      const form = $$("formrequest");
+												if (form.validate()){
+													var data = form.getValues();
+													webix.confirm("Do you wont to save data ?").then(function(result){
+														// webix.ajax().post("documents/store", data).then(() => webix.message("Saved"));
+														$$("upl1").send();
+
+														webix.send("submitForm", data);
+													});
+		                                        }
+		                                        else
+		                                        webix.message({ type:"error", text:"Form data is invalid" });
+									    	}
+										}
 									],
 									"type": "form",
 									"borderless": 1,
 									"scroll": "y"
 								},
-								{
-									"width": 0,
+								{	gravity:2,
 									"rows": [
 										{
-											"url": "demo->5fd1ae8024ab08001840fc37",
+											"url": "fp4forms_open",
 											"columns": [
 												{
 													"id": "user_id",
@@ -90,7 +117,7 @@ export default class FP4FormView extends JetView{
 													"id": "jenis",
 													"header": "Jenis Permohonan",
 													"sort": "string",
-													"width": 150,
+													"width": 200,
 													"fillspace": false,
 													"hidden": false
 												},
@@ -98,7 +125,7 @@ export default class FP4FormView extends JetView{
 													"id": "dokumen",
 													"header": "Nama Dokumen",
 													"sort": "string",
-													"width": 150,
+													"width": 200,
 													"fillspace": false,
 													"hidden": false
 												},

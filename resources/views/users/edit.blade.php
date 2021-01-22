@@ -63,28 +63,45 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Company:</strong>
+            @if(!empty($user->company->name))
             {!! Form::select('company_id', [$user->company_id=>$user->company->name]  +$companies,array('class' => 'form-control')) !!}
+            @else                
+            {!! Form::select('company_id', [null=>'Please Select']  +$companies,array('class' => 'form-control')) !!}
+            @endif
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Department:</strong>
+            @if(!empty($user->department->name))
             {!! Form::select('department_id', [$user->department_id=>$user->department->name] +$departments,array('class' => 'form-control')) !!}
+            @else                
+            {!! Form::select('department_id', [null=>'Please Select'] +$departments,array('class' => 'form-control')) !!}
+            @endif
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Position:</strong>
+            @if(!empty($user->position->name))
             {!! Form::select('position_id', [$user->position_id=>$user->position->name] +$positions,array('class' => 'form-control')) !!}
+            @else                
+            {!! Form::select('position_id', [null=>'Please Select'] +$positions,array('class' => 'form-control')) !!}
+            @endif
+
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Related User:</strong>
-            {!! Form::select('parent_id', [$user->parent_id=>$user->parent->name] +$parents,array('class' => 'form-control')) !!}
+            @if(!empty($user->parent->name))
+                {!! Form::select('parent_id', [$user->parent_id=>$user->parent->name] +$parents,array('class' => 'form-control')) !!}
+            @else                
+            {!! Form::select('parent_id', [null=>'Please Select'] +$parents,array('class' => 'form-control')) !!}
+            @endif
         </div>
     </div>
 

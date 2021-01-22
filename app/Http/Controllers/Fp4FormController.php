@@ -9,6 +9,7 @@ use File;
 
 use Auth;
 use App\User;
+use App\Department;
 
 class fp4formController extends Controller
 { 
@@ -24,10 +25,51 @@ class fp4formController extends Controller
 
     public function open()
     {
-        $fp4fprm = Fp4Form::where('status',0)->get();
+        $fp4fprm = Fp4Form::where('status',NULL)->get();
         return response()->json($fp4fprm);
     }
 
+    public function department_id()
+    {        
+        $user = Auth::user();
+        $departments = Department::select('name as value', 'id')->where('id',$user->department_id)->get();
+
+        return response()->json($departments);
+    }
+
+    public function user_id()
+    {        
+        $user = Auth::user();
+        $user_id = User::select('name as value', 'id')->where('id',$user->id)->get();
+
+        return response()->json($user_id);
+    }
+
+    public function submitForm(Request $request)
+    {
+        $input = $request->all();
+
+        $fileName1 = date("Y_m_d_H",time()).'_'.$request->input('file');
+        // $fileName1 = time().'_'.$request->input('file');
+        $input['file'] = $fileName1;
+
+        // if(!empty($input['file'])){ 
+        //     $fileName1 = time().'.'.$request->file->getClientOriginalName();
+        //     // $request->file->move(public_path('uploads'), $fileName1);
+        //     $input['file'] = $fileName1;
+        // }else{
+        //     $input['file'] = "";    
+        // }
+
+        $fp4form = Fp4Form::create($input);
+        
+        // $user = Auth::user();
+        // $user->parent->notify(new \App\Notifications\FormRequest($fp4form));
+
+        // return redirect('/#!/top/fp4_form')
+        //                 ->with('success','Form submit successfully.');
+
+    }
 
     /**
      * Display a listing of the resource.
@@ -79,7 +121,7 @@ class fp4formController extends Controller
 
         $fp4form = Fp4Form::create($input);
         
-        $user->parent->notify(new \App\Notifications\StatusDocument($document));
+        $user->parent->notify(new \App\Notifications\FormRequest($fp4form));
         
         return redirect()->route('fp4forms.index')
                         ->with('success','fp4form created successfully.');

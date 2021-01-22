@@ -17,6 +17,7 @@ class Fp4Form extends Model
      * @var array
      */
     protected $fillable = [
+        'name',
         'user_id',
         'department_id',
         'date',
