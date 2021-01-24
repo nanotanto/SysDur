@@ -37,6 +37,11 @@ class Fp4Form extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function department()
+    {
+        return $this->belongsTo('App\Department');
+    }
+
     public function admin()
     {
         return $this->belongsTo('App\User');

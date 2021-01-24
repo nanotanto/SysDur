@@ -63,11 +63,11 @@ class fp4formController extends Controller
 
         $fp4form = Fp4Form::create($input);
         
-        // $user = Auth::user();
-        // $user->parent->notify(new \App\Notifications\FormRequest($fp4form));
+        $user = Auth::user();
+        $user->parent->notify(new \App\Notifications\FormRequest($fp4form));
 
-        // return redirect('/#!/top/fp4_form')
-        //                 ->with('success','Form submit successfully.');
+        return redirect('/#!/top/fp4_form')
+                        ->with('success','Form submit successfully.');
 
     }
 

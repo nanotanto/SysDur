@@ -104,124 +104,62 @@ footer {
 <body>
 
     <page size="A4">
-        <header>
-          <img style="width: 100%;" src="{{ asset('img/header.png') }}">
-          </header>
-      <footer>        
-        <img style="width: 100%;" src="{{ asset('img/footer.png') }}">
-      </footer>
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>No:</strong><br/>
-                {{ $document->no }}
+                <strong>Nama Lengkap Pemohon:</strong><br/>
+                {{ $fp4form->user->name }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Nama Dokumen:</strong><br/>
-                {{ $document->name }}
+                <strong>Departemen:</strong><br/>
+                {{ $fp4form->department->name }}
             </div>
         </div>
         
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>I. Ruang Lingkup:</strong><br/>
-                {{ $document->lingkup }}
+                <strong>Tanggal Permohonan:</strong><br/>
+                {{ $fp4form->created_at }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>II. Tujuan:</strong><br/>
-                {{ $document->tujuan }}
+                <strong>Jenis Permohonan:</strong><br/>
+                {{ $fp4form->jenis }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>III. Definisi:</strong><br/>
-                {{ $document->definisi }}
+                <strong>Jumlah Dokumen:</strong><br/>
+                {{ $fp4form->jumlah }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>IV. Uraian Umum:</strong><br/>
-                {{ $document->uraian }}
+                <strong>Nama Dokumen:</strong><br/>
+                {{ $fp4form->dokumen }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>V. Prosedur:</strong><br/>
-                {{ $document->prosedur }}
+                <strong>Alasan:</strong><br/>
+                {{ $fp4form->alasan }}
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>VI. Lampiran:</strong><br/>
-                {{ $document->lampiran }}
-            </div>
-            
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>VII. Dokumen Terkait:</strong><br/>
-                {{ $document->terkait }}
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-          <div class="form-group">
-              <strong>VIII. Catatan Revisi:</strong><br/>
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th style="width: 100px;" scope="col">Revisi Ke:</th>
-                    <th scope="col">Deskripsi</th>
-                    <th scope="col">PIC</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">{{ $document->no_rev }}</th>
-                    <td>{{ $document->revisi }}</td>
-                    <td>{{ $document->user->name }}</td>
-                  </tr>
-                </tbody>
-              </table>
-          </div>
-      </div>
 
     </div>
 
     </page>
 
     <page size="A4">
-      <header>
-        <img style="width: 100%;" src="{{ asset('img/header.png') }}">
-        </header>
-    <footer>        
-      <img style="width: 100%;" src="{{ asset('img/footer.png') }}">
-    </footer>
 
         <div class="form-group">
-                <strong>Attachment:</strong><br/>
-                <img style="width: 100%;" src="{{ asset('uploads/'.$document->file1) }}">
-                {{-- {{ $document->file1 }} --}}
-            </div>
-    </page>
-
-    <page size="A4">    
-      <header>
-        <img style="width: 100%;" src="{{ asset('img/header.png') }}">
-        </header>
-    <footer>        
-      <img style="width: 100%;" src="{{ asset('img/footer.png') }}">
-    </footer>
-  
-            <div class="form-group">
-                <strong>More Attachment:</strong><br/>
-                <img style="width: 100%;" src="{{ asset('uploads/'.$document->file2) }}">
-                {{-- {{ $document->file2 }} --}}
+                <strong>Lampiran:</strong><br/>
+                <img style="width: 100%;" src="{{ asset('uploads/'.$fp4form->file) }}">
+                {{-- {{ $fp4form->file }} --}}
             </div>
     </page>
 
@@ -231,7 +169,7 @@ footer {
 
   <form action="{{ url('documents.submit') }}" method="POST" >
     @csrf
-    <input name="id"  type="hidden" value="{{ $document->id }}">
+    <input name="id"  type="hidden" value="{{ $fp4form->id }}">
 
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">           
         <button type="submit" name="submit" class="btn btn-primary">Approved</button>
@@ -241,42 +179,6 @@ footer {
   
   <hr/>
 
-  <div class="col-xs-12 col-sm-12 col-md-12">
-    <h4>Display Comments</h4>
-  
-  @include('documents.commentsDisplay', ['comments' => $document->comments, 'document_id' => $document->id])
-
-  <hr />
-  <h4>Add comment</h4>
-  {{-- <form method="post" action="{{ route('comments.store') }}"> --}}
-      @csrf
-      <div class="form-group">
-          <textarea class="form-control" name="body"></textarea>
-          <input type="hidden" name="document_id" value="{{ $document->id }}" />
-      </div>
-
-      <input name="user_id"  type="hidden" value="{{ $document->user->email }}">
-      <input name="doc_id"  type="hidden" value="{{ $document->id }}">
-
-      <div class="form-group text-right">
-          <input type="submit" name="comment" class="btn btn-success" value="Add Comment & Request Revise" formaction="{{ route('comments.store') }}"/>
-      </div>
-  </form>
-  </div>
-  
-
-  {{-- <form action="{{ url('documents.revised') }}" method="POST" >
-      @csrf
-      <input name="user_id"  type="hidden" value="{{ $document->user->email }}">
-      <input name="doc_id"  type="hidden" value="{{ $document->id }}">
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-            
-                  <button type="submit" name="revised" class="col-xs-12 btn btn-primary">Revised</button>
-                
-              </div>
-  </form> --}}
-<hr/>
  
 </body>
 </html>
