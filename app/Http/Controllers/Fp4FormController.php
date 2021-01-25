@@ -10,6 +10,7 @@ use File;
 use Auth;
 use App\User;
 use App\Department;
+use App\Fp4Status;
 
 class fp4formController extends Controller
 { 
@@ -65,6 +66,13 @@ class fp4formController extends Controller
         
         $user = Auth::user();
         $user->parent->notify(new \App\Notifications\FormRequest($fp4form));
+
+        $inputstatus['fp4_form_id'] = $fp4form->id;
+        $inputstatus['value'] = 'Issued';
+        $inputstatus['details'] = $user->name;
+        $inputstatus['date'] = $fp4form->created_at;
+
+        Fp4Status::create($inputstatus);
 
         return redirect('/#!/top/fp4_form')
                         ->with('success','Form submit successfully.');
