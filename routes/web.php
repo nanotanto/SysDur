@@ -51,3 +51,5 @@ Route::post('/documents/store', 'DocumentController@save');
 Route::get('/documents/storage/uploads/{id}', function ($id) {
 	return redirect('/storage/uploads/'.$id);
 });
+
+Route::get('fp4status/{id}', 'Fp4StatusController@status');

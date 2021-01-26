@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Fp4Form extends Model
+class Fp4Status extends Model
 {
     // use SoftDeletes;
 
@@ -17,35 +17,10 @@ class Fp4Form extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'user_id',
-        'department_id',
-        'date',
-        'jenis',
-        'jumlah',
-        'dokumen',
-        'alasan',
-        'file',
-        'status',
-        'analisa',
-        'admin_id',
-        'date_end'
+        'fp4_form_id',
+        'value',
+        'details',
+        'date'
     ];    
-
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
-
-    public function department()
-    {
-        return $this->belongsTo('App\Department');
-    }
-
-    public function admin()
-    {
-        return $this->belongsTo('App\User');
-    }
-
 
 }

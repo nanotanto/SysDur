@@ -12,7 +12,7 @@ use App\User;
 use App\Department;
 use App\Fp4Status;
 
-class fp4formController extends Controller
+class Fp4FormController extends Controller
 { 
     /**
      * Display a listing of the resource.

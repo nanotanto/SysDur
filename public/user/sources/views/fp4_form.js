@@ -143,7 +143,7 @@ export default class FP4FormView extends JetView{
 											"borderless": 0
 										},
 										{ "label": "Status Approval :", "view": "label", "borderless": 1 },
-										{ "url": "demo->5fd1ae8024ab08001840fc39", "view": "timeline", "layout": "x", "borderless": 1 }
+										{ "url": "fp4status/"+19, "view": "timeline", "layout": "x", "borderless": 1 }
 									]
 								}
 							]
