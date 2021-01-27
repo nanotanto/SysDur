@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Redirect;
 
 class LoginController extends Controller
 {
@@ -45,7 +46,8 @@ class LoginController extends Controller
         if($user->hasAnyRole(['Superadmin','Admin'])){
             return redirect('/admin');
         } else {
-            return redirect('/');
+            // return redirect('/');
+            return Redirect::intended();
         }
 
     }

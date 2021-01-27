@@ -28,6 +28,7 @@ class Fp4Form extends Model
         'file',
         'status',
         'analisa',
+        'position_id',
         'admin_id',
         'date_end'
     ];    

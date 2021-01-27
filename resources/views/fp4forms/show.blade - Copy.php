@@ -153,13 +153,26 @@ footer {
     </div>
 
     </page>
+
+    <page size="A4">
+
+        <div class="form-group">
+                <strong>Lampiran:</strong><br/>
+                <img style="width: 100%;" src="{{ asset('uploads/'.$fp4form->file) }}">
+                {{-- {{ $fp4form->file }} --}}
+            </div>
+    </page>
+
     
-  <form action="{{ url('updatefp4status') }}" method="POST" >
+  {{-- @include('documents.approved') --}}
+{{-- <page size="A4" layout=""> --}}
+
+  <form action="{{ url('documents.submit') }}" method="POST" >
     @csrf
     <input name="id"  type="hidden" value="{{ $fp4form->id }}">
 
       <div class="col-xs-12 col-sm-12 col-md-12 text-center">           
-        <button type="submit" name="submit" class="btn btn-primary">Checked/ Approved</button>
+        <button type="submit" name="submit" class="btn btn-primary">Approved</button>
       </div>
   {{-- <form> --}}
   <br/>
