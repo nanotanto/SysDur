@@ -33,10 +33,14 @@ class Fp4StatusController extends Controller
         $inputstatus['date'] = $current;
 
         Fp4Status::create($inputstatus);
+
+        $fp4form = Fp4Form::find($id);
+
+        if (!empty($user->parent_id)) {
+            $user->parent->notify(new \App\Notifications\FormRequest($fp4form));
+        }         
+
         
-
-        $user->parent->notify(new \App\Notifications\FormRequest($fp4form));
-
         return redirect('/#!/top/fp4_form')
                         ->with('success','Form submit successfully.');
 
