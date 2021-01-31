@@ -11,6 +11,7 @@ use Auth;
 use App\User;
 use App\Department;
 use App\Fp4Status;
+use DB;
 
 class Fp4FormController extends Controller
 { 
@@ -26,8 +27,34 @@ class Fp4FormController extends Controller
 
     public function open()
     {
-        $fp4fprm = Fp4Form::where('status',NULL)->get();
+        $fp4fprm = Fp4Form::where('status',NULL)
+                ->with('user','department')
+                ->get();
         return response()->json($fp4fprm);
+    }
+
+    public function department_()
+    {        
+        
+        $departments = Department::select('name as value', 'id')->get();
+
+        return response()->json($departments);
+    }
+
+    public function user_()
+    {        
+        
+        $user_id = User::select('name as value', 'id')->get();
+
+        return response()->json($user_id);
+    }
+
+    public function pic_sysdur()
+    {        
+        
+        $user_id = User::select('name as value', 'id')->where('position_id',1)->get();
+
+        return response()->json($user_id);
     }
 
     public function department_id()
@@ -65,7 +92,9 @@ class Fp4FormController extends Controller
         $fp4form = Fp4Form::create($input);
         
         $user = Auth::user();
-        $user->parent->notify(new \App\Notifications\FormRequest($fp4form));
+        if (!empty($user->parent_id)) {
+            $user->parent->notify(new \App\Notifications\FormRequest($fp4form));
+        }        
 
         $inputstatus['fp4_form_id'] = $fp4form->id;
         $inputstatus['value'] = 'Issued';
@@ -78,6 +107,43 @@ class Fp4FormController extends Controller
                         ->with('success','Form submit successfully.');
 
     }
+
+    public function updateForm(Request $request)
+    {
+        $data = Fp4Form::findOrFail($request->input('id'));
+        $data->fill($request->all());
+        $data->save();
+
+        return redirect('admin/#!/top/fp4_form')
+                        ->with('success','Form submit successfully.');
+
+    }
+
+    public function view($id)
+    {
+        $fp4form = Fp4Form::where('id',$id)->get();
+        return response()->json($fp4form);
+    }
+
+    public function total_picsysdur()
+    {
+        $fp4form = Fp4Form::select('admin_id', DB::raw('count(status) as total'))
+                ->where('status',1)
+                ->with('admin')
+                 ->groupBy('admin_id')
+                 ->get();
+        return response()->json($fp4form);
+    }
+
+    public function open_picsysdur()
+    {
+        $fp4fprm = Fp4Form::where('status',1)
+                ->with('user','department')
+                ->get();
+        return response()->json($fp4fprm);
+    }
+
+
 
     /**
      * Display a listing of the resource.

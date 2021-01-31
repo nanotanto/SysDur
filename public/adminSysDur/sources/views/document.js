@@ -1,7 +1,7 @@
 import {JetView} from "webix-jet";
 import {documents} from "models/documents";
 
-export default class DaocumentsView extends JetView{
+export default class DaocumentView extends JetView{
 	config(){
 		return {
 			type:"space",

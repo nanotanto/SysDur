@@ -149,6 +149,12 @@ footer {
                 {{ $fp4form->alasan }}
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Lampiran:</strong><br/>
+                <a target="_blank" href="/uploads/{{ $fp4form->file }}">Buka</a>                
+            </div>
+        </div>
 
     </div>
 

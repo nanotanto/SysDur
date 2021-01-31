@@ -14,16 +14,16 @@ export default class FP4FormView extends JetView{
 						{
 							"id": 1610522962845,
 							"cols": [
-								{ "autoheight": false, "view": "form", "id": "formrequest", "elementsConfig": { "required": false, "labelPosition": "top" },
+								{ "autoheight": false, "view": "form", "id": "formrequest", "elementsConfig": { "required": true, "labelPosition": "top" },
 									"rows": [
-										{ "label": "Nama Lengkap Pemohon", "view": "select", 
+										{ "label": "Nama Lengkap Pemohon", "view": "combo", 
 											"options": url+"/user_id", "name": "user_id", "labelWidth": 200 },
 										// { "view": "text", "label": "Nama Lengkap Pemohon", "name": "name", "id": 1610522963045, "labelWidth": 200 },
 										{
 											"label": "Department",
 											"options": url+"/department_id",
 											// url:"/department_id",
-											"view": "select",
+											"view": "combo",
 											"id": 1610522964018,
 											"labelWidth": 200,
 											"name": "department_id"
@@ -39,16 +39,16 @@ export default class FP4FormView extends JetView{
 										// },
 										{
 											"label": "Jenis Permohonan",
-											"options": ["Penambahan Dokumen Baru","Perubahan Dokumen"],
-											"view": "select",
+											"options": ["","Penambahan Dokumen Baru","Perubahan Dokumen"],
+											"view": "combo",
 											"id": 1610522964593,
 											"labelWidth": 200,
 											"name": "jenis"
 										},
 										{
 											"label": "Jumlah Dokumen",
-											"options": ["1","2","3","4",'5','6','7','8','9','10'],
-											"view": "select",
+											"options": ["","1","2","3","4",'5','6','7','8','9','10'],
+											"view": "combo",
 											"id": 1610522964737,
 											"labelWidth": 200,
 											"name": "jumlah"
@@ -95,6 +95,27 @@ export default class FP4FormView extends JetView{
 									"rows": [
 										{
 											"url": "fp4forms_open",
+											select:true,
+				                            on:{
+				                                "onAfterSelect":function(id){
+				                                    $$("formstatus").clearAll();     
+				                                    $$("formstatus").load("fp4status/"+id);    
+				                                }
+				                            },
+				                            ready:function(){ 
+				                                this.adjustColumn("user_id"); 
+				                                this.adjustColumn("department_id"); 
+				                                this.adjustColumn("created_at"); 
+				                                this.adjustColumn("jenis"); 
+				                                this.adjustColumn("dokumen"); 
+				                                this.adjustColumn("alasan"); 
+				                            },
+					                        scheme:{
+					                            $init:function(row){
+					                            	row.user_id = (row.user || "") && row.user.name
+					                            	row.department_id = (row.department || "") && row.department.name
+												}
+											},
 											"columns": [
 												{
 													"id": "user_id",
@@ -112,7 +133,7 @@ export default class FP4FormView extends JetView{
 													"hidden": false,
 													"width": 150
 												},
-												{ "id": "date", "header": "Tanggal", "sort": "string", "fillspace": false, "hidden": false },
+												{ "id": "created_at", "header": "Tanggal", "sort": "string", "fillspace": false, "hidden": false },
 												{
 													"id": "jenis",
 													"header": "Jenis Permohonan",
@@ -139,11 +160,15 @@ export default class FP4FormView extends JetView{
 												}
 											],
 											"view": "datatable",
-											"gravity": 3,
+											"gravity": 2,
 											"borderless": 0
 										},
-										{ "label": "Status Approval :", "view": "label", "borderless": 1 },
-										{ "url": "fp4status/"+19, "view": "timeline", "layout": "x", "borderless": 1 }
+										{ "label": "Status Form Request :", "view": "label", "borderless": 1 },
+										{ 
+											// "url": "fp4status/"+19, 
+											id:"formstatus",
+											"view": "timeline", "layout": "x", "borderless": 1 
+										}
 									]
 								}
 							]

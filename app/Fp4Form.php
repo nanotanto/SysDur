@@ -20,7 +20,7 @@ class Fp4Form extends Model
         'name',
         'user_id',
         'department_id',
-        'date',
+        // 'date',
         'jenis',
         'jumlah',
         'dokumen',
@@ -30,7 +30,7 @@ class Fp4Form extends Model
         'analisa',
         'position_id',
         'admin_id',
-        'date_end'
+        // 'date_end'
     ];    
 
     public function user()

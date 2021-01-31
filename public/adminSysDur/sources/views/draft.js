@@ -1,7 +1,7 @@
 import {JetView} from "webix-jet";
 // import {documents} from "models/documents";
 
-export default class DashboardView extends JetView{
+export default class DraftView extends JetView{
 	config(){
 		return {
 			type:"space",
@@ -13,55 +13,71 @@ export default class DashboardView extends JetView{
 							"view": "toolbar",
 							"cols": [
 								{ "view": "label", "label": "List Form Request" },
-								{ "view": "button", "label": "show", "autowidth": true, "name": "show" }
+								{ "view": "button", "label": "Update Status", "autowidth": true, "name": "update" }
 							]
 						},
 						{
-					"url": "demo->5fd1ae8024ab08001840fc37",
-					"columns": [
-						{
-							"id": "user_id",
-							"header": "Nama Pemohon",
-							"fillspace": false,
-							"sort": "string",
-							"hidden": false,
-							"width": 150
-						},
-						{
-							"id": "department_id",
-							"header": "Department",
-							"sort": "string",
-							"fillspace": false,
-							"hidden": false,
-							"width": 150
-						},
-						{ "id": "date", "header": "Tanggal", "sort": "string", "fillspace": false, "hidden": false },
-						{
-							"id": "jenis",
-							"header": "Jenis Permohonan",
-							"sort": "string",
-							"width": 150,
-							"fillspace": false,
-							"hidden": false
-						},
-						{
-							"id": "dokumen",
-							"header": "Nama Dokumen",
-							"sort": "string",
-							"width": 150,
-							"fillspace": false,
-							"hidden": false
-						},
-						{
-							"id": "alasan",
-							"header": "Alasan Permohonan",
-							"sort": "string",
-							"width": 250,
-							"fillspace": true,
-							"hidden": false
-						}
-					],
-					"view": "datatable"
+							"url": "/open_picsysdur",
+							ready:function(){ 
+								this.adjustColumn("user_id"); 
+								 this.adjustColumn("department_id"); 
+								 this.adjustColumn("created_at"); 
+								 this.adjustColumn("jenis"); 
+								 this.adjustColumn("dokumen"); 
+								 // this.adjustColumn("alasan"); 
+								 this.adjustColumn("file"); 
+							},
+							scheme:{
+								$init:function(row){
+									row.user_id = (row.user || "") && row.user.name
+									row.department_id = (row.department || "") && row.department.name
+								}
+							},
+						"columns": [
+							{ id:"file",	header:["Lampiran"], template:"<a target='_blank' href='uploads/#file#'>View</a>"},
+							{
+								"id": "user_id",
+								"header": "Nama Pemohon",
+								"fillspace": false,
+								"sort": "string",
+								"hidden": false,
+								"width": 150
+							},
+							{
+								"id": "department_id",
+								"header": "Department",
+								"sort": "string",
+								"fillspace": false,
+								"hidden": false,
+								"width": 150
+							},
+							{ "id": "created_at", "header": "Tanggal", "sort": "string", "fillspace": false, "hidden": false },
+							{
+								"id": "jenis",
+								"header": "Jenis Permohonan",
+								"sort": "string",
+								"width": 150,
+								"fillspace": false,
+								"hidden": false
+							},
+							{
+								"id": "dokumen",
+								"header": "Nama Dokumen",
+								"sort": "string",
+								"width": 150,
+								"fillspace": false,
+								"hidden": false
+							},
+							{
+								"id": "alasan",
+								"header": "Alasan Permohonan",
+								"sort": "string",
+								"fillspace": true,
+								"hidden": false
+							}
+						],
+						"view": "datatable",
+						select:true
 						}
 					]
 				},
@@ -121,7 +137,7 @@ export default class DashboardView extends JetView{
 								}
 							]
 						},
-						{
+						{gravity:2,
 							"rows": [
 								{ "label": "Status Approval :", "view": "label" },
 								{ "url": "demo->5fd1ae8024ab08001840fc39", "view": "timeline", "scroll": "x", "layout": "x" }
