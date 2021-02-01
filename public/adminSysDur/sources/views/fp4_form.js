@@ -19,10 +19,10 @@ export default class FP4FormView extends JetView{
 										{ "label": "ID", "view": "text", "name": "id", "labelWidth": 200, hidden:true },
 										// { "view": "text", "label": "Nama Lengkap Pemohon", "name": "name", "id": 1610522963045, "labelWidth": 200 },
 										{ "id": "opt_user", "label": "Nama Lengkap Pemohon", "view": "combo", readonly:true,
-											"options": "/user_", "name": "user_id", "labelWidth": 200 },
+											"options": "user_", "name": "user_id", "labelWidth": 200 },
 										{
 											"label": "Department",readonly:true,
-											"options": "/department_",
+											"options": "department_",
 											"view": "combo",
 											"id": 1610522964018,
 											"labelWidth": 200,
@@ -54,7 +54,7 @@ export default class FP4FormView extends JetView{
 										// { "label": "View Attachment", "view": "button", "height": 38, "name": "file" },
 										{ "label": "Change Status", "options": [{id:0,value:""},{id:1, value:"Diterima"}], "view": "combo", "name": "status" },
 										{ "label": "Result Analysis", "view": "textarea", name:"analisa"},
-										{ "label": "PIC SysDur", "options": "/pic_sysdur", "view": "combo", "name": "admin_id" },
+										{ "label": "PIC SysDur", "options": "pic_sysdur", "view": "combo", "name": "admin_id" },
 										// { "label": "Date", "value": "2021-01-13 14:29:23", "view": "datepicker", "name": "date_end" },
 										{ "view": "button", "css": "webix_primary", "label": "Save", click: function() {										      
 
@@ -62,7 +62,7 @@ export default class FP4FormView extends JetView{
 												if (form.validate()){
 													var data = form.getValues();
 													webix.confirm("Do you wont to save data ?").then(function(result){
-														webix.send("/updateForm", data);
+														webix.send("updateForm", data);
 													});
 		                                        }
 		                                        else
@@ -78,14 +78,14 @@ export default class FP4FormView extends JetView{
 									gravity:2,
 									"rows": [
 										{
-											"url": "/fp4forms_open",
+											"url": "fp4forms_open",
 											select:true,
 				                            on:{
 				                                "onAfterSelect":function(id){
 				                                    $$("formstatus").clearAll();     
-				                                    $$("formstatus").load("/fp4status/"+id);    
+				                                    $$("formstatus").load("fp4status/"+id);    
 				                                    $$("formrequest").clear();     
-				                                    $$("formrequest").load("/fp4forms_view/"+id);  
+				                                    $$("formrequest").load("fp4forms_view/"+id);  
 				                                }
 				                            },
 				                            ready:function(){ 
@@ -154,7 +154,7 @@ export default class FP4FormView extends JetView{
 										},
 										{cols:[
 											{
-												url:"/total_picsysdur",
+												url:"total_picsysdur",
 												view:"datatable",
 					                            ready:function(){ 
 					                                this.adjustColumn("admin_id"); 

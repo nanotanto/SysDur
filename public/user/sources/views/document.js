@@ -30,6 +30,7 @@ export default class DocumentsView extends JetView{
 						}					
 				},
 				{
+					url: "documents_publish",
 					view: "datatable",
 					id: "tbl_document",
 					select: true,
@@ -61,6 +62,6 @@ export default class DocumentsView extends JetView{
 		};
 	}	
 	init(){
-		$$('tbl_document').sync(documents);
+		// $$('tbl_document').sync(documents);
 	}
 }

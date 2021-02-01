@@ -17,7 +17,7 @@ export default class DraftView extends JetView{
 							]
 						},
 						{
-							"url": "/open_picsysdur",
+							"url": "open_picsysdur",
 							ready:function(){ 
 								this.adjustColumn("user_id"); 
 								 this.adjustColumn("department_id"); 
@@ -97,16 +97,31 @@ export default class DraftView extends JetView{
 							]
 						},
 						{
-							"url": "demo->5fd1ae8024ab08001840fc37",
-							"columns": [
-								{ "id": "no", "header": "Document No.", "sort": "string" },
-								{ "id": "name", "header": "Document Name", "fillspace": true, "sort": "string" },
-								{ "id": "no_rev", "header": "Rev.", "sort": "string" },
-								{ "id": "date", "header": "Effective Date", "sort": "string" },
-								{ "id": "department_id", "header": "Department", "sort": "string" },
-								{ "id": "detail", "header": "", "sort": "string" }
-							],
-							"view": "datatable"
+							url: "documents_publish",
+							view: "datatable",
+							id: "tbl_document",
+							select: true,
+							columns: [
+								{ id:"no",	header:["Document No.",{ content:"serverFilter"}], sort:"server",	width:180,	 template:"<a class='link' target='_blank' href='#file#'>#no#</a>"},
+								{ id:"name",  fillspace:true,	header:["Document Name",{ content:"serverFilter"}], sort:"server"},
+								{ id:"rev_no",	header:["Rev."], width:50},
+								{ id:"effective_date",	header:["effective Date"], width:100},
+								{ id:"department",	header:["Department",{ content:"serverFilter"}], sort:"server", width:150},
+								{ id:"detail", header:"", width:70, template:"<a class='detail' href='#'>Detail</a>"}
+								
+							],					
+							on:{
+								"onresize":webix.once(function(){ 
+									this.adjustRowHeight("name", true); 
+								}),
+								onBeforeLoad:function(){
+									this.showOverlay("Loading...");
+								},
+								onAfterLoad:function(){
+									this.hideOverlay();
+								}
+
+							},
 						}
 					]
 				},
@@ -116,7 +131,7 @@ export default class DraftView extends JetView{
 							"rows": [
 								{
 									"cols": [
-										{ "label": "Send to :", "options": "demo->5fd1ae8024ab08001840fc3a", "view": "select" },
+										{ "label": "Send to :", "options": "demo->5fd1ae8024ab08001840fc3a", "view": "combo" },
 										{ "label": "Add", "view": "button", "height": 0, "width": 100, "name": "add" }
 									]
 								},
