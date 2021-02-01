@@ -11,9 +11,10 @@ export const data = [
 		// { id: "ocard_form", value: "O-Card"},
 		// { id: "sasaran_form", value: "Sasaran & Program"}
 	]},
-	{id: "doc", icon: "mdi mdi-book", value:"Documentation", data:[
+	{id: "doc", icon: "mdi mdi-book", value:"Documentation", data:[		
+		{ id:"document", value:"Document"},
 		{ id:"draft", value:"Draft Document"},
-		{ id:"document", value:"Document"}
+		{ id:"flowchart", value:"Create Flowchart"}
 	]},
 	// {id: "tables", icon: "mdi mdi-table", value:"Record", data:[
 	// 	{ id: "fp4_record", value: "FP4"}
@@ -21,7 +22,7 @@ export const data = [
 	// {id: "layouts", icon: "mdi mdi-view-column", value:"View/ Report", data:[
 	// 	{ id: "fp4_view", value: "V/R FP4"}
 	// ]},
-	{id: "quiz", icon: "mdi mdi-puzzle", value:"Evaluation", 		
+	{id: "quiz", icon: "mdi mdi-school", value:"Evaluation", 		
 		data:[
 			// { id: "test", value: "Competency Test"},
 			// { id: "result", value: "Test Result"}
