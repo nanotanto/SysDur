@@ -34,13 +34,17 @@ Route::group(['middleware' => ['auth']], function() {
 Route::post('/documents.revised', 'DocumentController@revised');
 Route::post('/documents.submit', 'DocumentController@submit');
 
+Route::get('/documents_all', 'DocumentController@all');
+Route::get('/documents_draft', 'DocumentController@draft');
 Route::get('/documents_publish', 'DocumentController@publish');
 Route::get('/documents_view/{document}', 'DocumentController@view');
+Route::get('/documents_select/{id}', 'DocumentController@select');
 
 Route::get('/fp4forms_open', 'Fp4FormController@open');
 Route::get('/fp4forms_view/{id}', 'Fp4FormController@view');
 Route::get('/user_id', 'Fp4FormController@user_id');
 Route::get('/department_id', 'Fp4FormController@department_id');
+Route::get('/fp4form_id', 'Fp4FormController@fp4form_id');
 
 Route::get('/pic_sysdur', 'Fp4FormController@pic_sysdur');
 Route::get('/open_picsysdur', 'Fp4FormController@open_picsysdur');
@@ -50,6 +54,7 @@ Route::get('/total_picsysdur', 'Fp4FormController@total_picsysdur');
 
 Route::post('/submitForm', 'Fp4FormController@submitForm');
 Route::post('/updateForm', 'Fp4FormController@updateForm');
+Route::post('/updateForm2', 'Fp4FormController@updateForm2');
 
 Route::post('/uploadfile', 'UploadController@uploadfile');
 

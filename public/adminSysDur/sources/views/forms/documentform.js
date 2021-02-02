@@ -18,10 +18,17 @@ export default class DocumentsForm extends JetView{
 								{
 									"rows": [
 										{ "label": "Request No.", 
-											options:[{ "id":1, "value":"Master" },{ "id":2, "value":"Release" }], 
-											"view": "select", "name": "fp4form_id" 
+											options:"fp4form_id",
+											"view": "combo", "name": "fp4form_id" 
 										},
-										{ "label": "Department", options:[{ "id":1, "value":"Master" },{ "id":2, "value":"Release" }], "view": "select", "name": "department_id" },
+										{
+											"label": "Department",
+											"options": "department_",
+											"view": "combo",
+											"id": 1610522964018,
+											"labelWidth": 200,
+											"name": "department_id"
+										},
 										{ "label": "Document No.", "view": "text", "name": "no" },
 										{ "label": "Document Name", "view": "text", "name": "name" },
 										{ "label": "Revision No.", "view": "text", "name": "no_rev" },
@@ -30,6 +37,7 @@ export default class DocumentsForm extends JetView{
 								},
 								// { "label": "Draft Document", "view": "textarea", "gravity": 3, "name": "isi" }
 								{ "label": "Draft Document", "view": "tinymce-editor", "gravity": 3, "name": "prosedur",
+									value:"<p><strong>I. RUANG LINGKUP</strong></p><p>&nbsp;</p><p><strong>II. TUJUAN</strong></p><p>&nbsp;</p><p><strong>III. REFERENSI</strong></p><p>&nbsp;</p><p><strong>IV. DEFINISI</strong></p><p>&nbsp;</p><p><strong>V. INFORMASI UMUM</strong></p><p>&nbsp;</p><p><strong>VI. PROSEDUR</strong></p><p>&nbsp;</p><p><strong>VII. LAMPIRAN</strong></p><p>&nbsp;</p><p><strong>VIII. DOKUMEN TERKAIT</strong></p><p>&nbsp;</p>",
 									cdn:"tinymce",
 									config:{
 										setup: function (editor) {
@@ -82,7 +90,7 @@ export default class DocumentsForm extends JetView{
 									click:() => this.show("draft")
 								},
 								{
-									view:"button", value:"Save", type:"form", align:"center", width:120,
+									view:"button", value:"Save", type:"form", align:"center", width:120, css:"webix_primary",
 									click:() => {
 										const form = $$("documentform");
 										if (form.validate()){

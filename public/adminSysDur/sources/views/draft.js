@@ -13,11 +13,17 @@ export default class DraftView extends JetView{
 							"view": "toolbar",
 							"cols": [
 								{ "view": "label", "label": "List Form Request" },
-								{ "view": "button", "label": "Update Status", "autowidth": true, "name": "update" }
+								// { "view": "button", "label": "Update Status", "autowidth": true, "name": "update" }
 							]
 						},
 						{
 							"url": "open_picsysdur",
+							on:{
+								"onAfterSelect":function(id){
+									 $$("tbl_document").clearAll();   
+									  $$("tbl_document").load("documents_select/"+id);     
+								}
+				            },
 							ready:function(){ 
 								this.adjustColumn("user_id"); 
 								 this.adjustColumn("department_id"); 
@@ -34,6 +40,14 @@ export default class DraftView extends JetView{
 								}
 							},
 						"columns": [
+							{ id:"edit", header:"", width:35, template:"{common.editIcon()}" },
+							{
+								"id": "id",
+								"header": "Reg. No.",
+								"fillspace": false,
+								"sort": "string",
+								"hidden": false
+							},
 							{ id:"file",	header:["Lampiran"], template:"<a target='_blank' href='uploads/#file#'>View</a>"},
 							{
 								"id": "user_id",
@@ -76,6 +90,9 @@ export default class DraftView extends JetView{
 								"hidden": false
 							}
 						],
+						onClick:{
+							"wxi-pencil":(e, id) => this.show("forms.fp4_form?id="+id.row)
+						},				                            
 						"view": "datatable",
 						select:true
 						}
@@ -88,8 +105,18 @@ export default class DraftView extends JetView{
 							"view": "toolbar",
 							"cols": [
 								{ "view": "label", "label": "List Document" },
-								{ "label": "View All", "view": "button" },
-								{ "label": "View Draft", "view": "button" },
+								{ "label": "View All Publish", "view": "button", 
+								click:()=>{
+									$$("tbl_document").clearAll();   
+									  $$("tbl_document").load("documents_publish/"+id);
+								}
+								},
+								{ "label": "View All Draft", "view": "button", 
+								click:()=>{
+									$$("tbl_document").clearAll();   
+									  $$("tbl_document").load("documents_draft/"+id);
+								}
+								},
 								// { "label": "Revision Document", "view": "button", "name": "revisi" },
 								{ "label": "Create New Document", "view": "button", "name": "new",
 									click:() => this.show("forms.documentform")
@@ -97,16 +124,16 @@ export default class DraftView extends JetView{
 							]
 						},
 						{
-							url: "documents_publish",
+							url: "documents_all",
 							view: "datatable",
 							id: "tbl_document",
 							select: true,
 							columns: [
 								{ id:"no",	header:["Document No.",{ content:"serverFilter"}], sort:"server",	width:180,	 template:"<a class='link' target='_blank' href='#file#'>#no#</a>"},
 								{ id:"name",  fillspace:true,	header:["Document Name",{ content:"serverFilter"}], sort:"server"},
-								{ id:"rev_no",	header:["Rev."], width:50},
-								{ id:"effective_date",	header:["effective Date"], width:100},
-								{ id:"department",	header:["Department",{ content:"serverFilter"}], sort:"server", width:150},
+								{ id:"no_rev",	header:["Rev."], width:50},
+								{ id:"date",	header:["effective Date"], width:100},
+								{ id:"department_id",	header:["Department",{ content:"serverFilter"}], sort:"server", width:150},
 								{ id:"detail", header:"", width:70, template:"<a class='detail' href='#'>Detail</a>"}
 								
 							],					

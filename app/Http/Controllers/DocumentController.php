@@ -220,9 +220,27 @@ class DocumentController extends Controller
                         ->with('success','Document submit successfully');
     }
 
+    public function all()
+    {
+        $document = Document::select('id','no','name','no_rev','date','department_id')->get();
+        return response()->json($document);
+    }
+
+    public function draft()
+    {
+        $document = Document::where('status',NULL)->select('id','no','name','no_rev','date','department_id')->get();
+        return response()->json($document);
+    }
+
     public function publish()
     {
-        $document = Document::where('status',1)->get();
+        $document = Document::where('status',1)->select('id','no','name','no_rev','date','department_id')->get();
+        return response()->json($document);
+    }
+
+    public function select($id)
+    {
+        $document = Document::where('fp4form_id',$id)->select('id','no','name','no_rev','date','department_id')->get();
         return response()->json($document);
     }
 

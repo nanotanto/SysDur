@@ -41,7 +41,7 @@ export default class DocumentsView extends JetView{
 						{ id:"no_rev",	header:["Rev."], width:50},
 						{ id:"date",	header:["effective Date"], width:100},
 						{ id:"department_id",	header:["Department",{ content:"textFilter"}], sort:"text", width:150},
-						{ id:"detail", header:"", width:70, template:"<a class='detail' href='#'>Detail</a>"}
+						// { id:"detail", header:"", width:70, template:"<a class='detail' href='#'>Detail</a>"}
 						
 					],
 					// url:"documents.publish",					

@@ -119,6 +119,28 @@ class Fp4FormController extends Controller
 
     }
 
+    public function updateForm2(Request $request)
+    {
+        $data = Fp4Form::findOrFail($request->input('id'));
+        $data->fill($request->all());
+        $data->save();
+
+        return redirect('admin/#!/top/draft')
+                        ->with('success','Form submit successfully.');
+
+    }
+
+    public function fp4form_id()
+    {        
+        $user = Auth::user();        
+        $fp4form = Fp4Form::select('id as value', 'id')
+        ->where('admin_id',$user->id)
+        ->where('status',1)
+        ->get();
+
+        return response()->json($fp4form);
+    }
+
     public function view($id)
     {
         $fp4form = Fp4Form::where('id',$id)->get();
