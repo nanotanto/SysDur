@@ -128,13 +128,18 @@ export default class DraftView extends JetView{
 							view: "datatable",
 							id: "tbl_document",
 							select: true,
+							scheme:{
+								$init:function(row){
+									row.department_id = (row.department || "") && row.department.name
+								}
+							},
 							columns: [
-								{ id:"no",	header:["Document No.",{ content:"serverFilter"}], sort:"server",	width:180,	 template:"<a class='link' target='_blank' href='#file#'>#no#</a>"},
+								{ id:"no",	header:["Document No.",{ content:"serverFilter"}], sort:"server",	width:180,	 template:"<a class='link' target='_blank' href='/documents_view/#id#'>#no#</a>"},
 								{ id:"name",  fillspace:true,	header:["Document Name",{ content:"serverFilter"}], sort:"server"},
 								{ id:"no_rev",	header:["Rev."], width:50},
 								{ id:"date",	header:["effective Date"], width:100},
 								{ id:"department_id",	header:["Department",{ content:"serverFilter"}], sort:"server", width:150},
-								{ id:"detail", header:"", width:70, template:"<a class='detail' href='#'>Detail</a>"}
+								// { id:"detail", header:"", width:70, template:"<a class='detail' href='/#'>Detail</a>"}
 								
 							],					
 							on:{
@@ -146,8 +151,11 @@ export default class DraftView extends JetView{
 								},
 								onAfterLoad:function(){
 									this.hideOverlay();
-								}
-
+								},
+								"onAfterSelect":function(id){
+				                                    $$("docstatus").clearAll();     
+				                                    $$("docstatus").load("docstatus/"+id); 
+				                                }
 							},
 						}
 					]
@@ -158,7 +166,7 @@ export default class DraftView extends JetView{
 							"rows": [
 								{
 									"cols": [
-										{ "label": "Send to :", "options": "demo->5fd1ae8024ab08001840fc3a", "view": "combo" },
+										{ "label": "Send to :", "options": "user_", "view": "combo" },
 										{ "label": "Add", "view": "button", "height": 0, "width": 100, "name": "add" }
 									]
 								},
@@ -182,7 +190,7 @@ export default class DraftView extends JetView{
 						{gravity:2,
 							"rows": [
 								{ "label": "Status Approval :", "view": "label" },
-								{ "url": "demo->5fd1ae8024ab08001840fc39", "view": "timeline", "scroll": "x", "layout": "x" }
+								{ id:"docstatus", "view": "timeline", "scroll": "x", "layout": "x" }
 							]
 						}
 					]

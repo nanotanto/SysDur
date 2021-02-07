@@ -18,7 +18,7 @@ class Document extends Model
      */
     protected $fillable = [
         'no', 'name',
-        'no_rev','revisi','user_id',
+        'no_rev','revisi','user_id','fp4form_id','department_id',
         'lingkup',
         'tujuan',
         'definisi',
@@ -33,6 +33,11 @@ class Document extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo('App\Department');
     }
 
     public function comments()

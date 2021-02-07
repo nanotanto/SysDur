@@ -25,12 +25,12 @@ class CommentController extends Controller
      */
     public function store(Request $request, Document $document)
     {
-        $id = $request->input('doc_id');
+        $id = $request->input('document_id');
         $document = Document::where('id',$id)->first();
 
         $user_id = $request->input('user_id');
 
-        $user = User::where('email', $user_id)->first();
+        $user = User::where('id', $user_id)->first();
 
         // $user = Auth::user();
         // if (!empty($user->parent_id)) {
@@ -47,7 +47,7 @@ class CommentController extends Controller
         Comment::create($input);
    
         // return back();
-        return redirect()->route('documents.index')
+        return redirect('/')
         ->with('success','Request revise document');
     }
 }

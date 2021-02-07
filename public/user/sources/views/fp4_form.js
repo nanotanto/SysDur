@@ -14,7 +14,7 @@ export default class FP4FormView extends JetView{
 						{
 							"id": 1610522962845,
 							"cols": [
-								{ "autoheight": false, "view": "form", "id": "formrequest", "elementsConfig": { "required": true, "labelPosition": "top" },
+								{ "autoheight": false, "view": "form", "id": "formrequest", "elementsConfig": { "required": false, "labelPosition": "top" },
 									"rows": [
 										{ "label": "Nama Lengkap Pemohon", "view": "combo", 
 											"options": url+"/user_id", "name": "user_id", "labelWidth": 200 },

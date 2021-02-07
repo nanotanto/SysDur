@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Document;
+use App\DocStatus;
 use Illuminate\Http\Request;
 
 use File;
@@ -20,8 +21,8 @@ class DocumentController extends Controller
     function __construct()
     {
          $this->middleware('permission:document-list|document-create|document-edit|document-delete', ['only' => ['index','show']]);
-         $this->middleware('permission:document-create', ['only' => ['create','store', 'revised', 'submit']]);
-         $this->middleware('permission:document-edit', ['only' => ['edit','update', 'revised', 'submit']]);
+         $this->middleware('permission:document-create', ['only' => ['create','store', 'revised']]);
+         $this->middleware('permission:document-edit', ['only' => ['edit','update', 'revised']]);
          $this->middleware('permission:document-delete', ['only' => ['destroy']]);
     }
     /**
@@ -197,7 +198,7 @@ class DocumentController extends Controller
         }        
         
     
-        return redirect()->route('documents.index')
+        return redirect('/')
                         ->with('success','Document submit successfully');
     }
 
@@ -222,7 +223,9 @@ class DocumentController extends Controller
 
     public function all()
     {
-        $document = Document::select('id','no','name','no_rev','date','department_id')->get();
+        $document = Document::select('id','no','name','no_rev','date','department_id')
+                    ->with('department')
+                    ->get();
         return response()->json($document);
     }
 
@@ -259,7 +262,24 @@ class DocumentController extends Controller
     }
 
     public function save(Request $request){
-        $document = Document::create($request->all());
+        $input = $request->all();
+       
+        $user = Auth::user();
+        $input['user_id'] = $user->id;
+
+        $document = Document::create($input);
+
+        // $document = Document::create($request->all());
+
+        $inputstatus['document_id'] = $document->id;
+        $inputstatus['value'] = 'Issued';
+        $inputstatus['details'] = $user->name;
+        $inputstatus['date'] = $document->created_at;
+
+        DocStatus::create($inputstatus);
+
+
+        $user->parent->notify(new \App\Notifications\StatusDocument($document));
 
         return redirect('/admin#!/top/draft')
                         ->with('success','Document created successfully.');

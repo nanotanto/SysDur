@@ -36,7 +36,7 @@ export default class DocumentsView extends JetView{
 					select: true,
 					scroll:"y",
 					columns: [
-						{ id:"no",	header:["Document No.",{ content:"textFilter"}], sort:"text",	width:180,	 template:"<a class='link' target='_blank' href='documents/#id#'>#no#</a>"},
+						{ id:"no",	header:["Document No.",{ content:"textFilter"}], sort:"text",	width:180,	 template:"<a class='link' target='_blank' href='documents_view/#id#'>#no#</a>"},
 						{ id:"name",  fillspace:true,	header:["Document Name",{ content:"textFilter"}], sort:"text"},
 						{ id:"no_rev",	header:["Rev."], width:50},
 						{ id:"date",	header:["effective Date"], width:100},

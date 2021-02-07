@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>A4</title>
+  <title>Document</title>
 
   <!-- Normalize or reset CSS with your favorite library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
@@ -39,6 +39,12 @@
 		  color: #000;
 		  padding-top: 15mm;
 		  padding-bottom: 5mm;
+		}
+		footer::after{			
+		  content:"Dokumen ini hanya digunakan untuk kepentingan PT.";
+		}
+		header::after{			
+		  content:"";
 		}
 	</style>
 </head>

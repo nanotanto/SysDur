@@ -59,7 +59,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>PIC:</strong>
-                    <input type="text" name="name" value="{{ $document->user->name }}" class="form-control" placeholder="PIC">
+                    <input type="text" name="name" value="{{ $document->user_id }}" class="form-control" placeholder="PIC">
                 </div>
             </div>
             

@@ -12,7 +12,7 @@ export default class QuizView extends JetView{
 						{
 							view:"iframe", 
 							id:"frame-body", 
-							src:"quiz/public"
+							src:"http://127.0.0.1:8080"
 						}
 					]
             	}

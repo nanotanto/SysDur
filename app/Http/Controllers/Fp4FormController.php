@@ -134,7 +134,7 @@ class Fp4FormController extends Controller
     {        
         $user = Auth::user();        
         $fp4form = Fp4Form::select('id as value', 'id')
-        ->where('admin_id',$user->id)
+        // ->where('admin_id',$user->id)
         ->where('status',1)
         ->get();
 

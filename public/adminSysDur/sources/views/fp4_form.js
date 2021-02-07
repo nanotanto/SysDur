@@ -52,7 +52,7 @@ export default class FP4FormView extends JetView{
 										{ "label": "Nama Dokumen", readonly:true,"view": "text", "id": "dokumen", "labelWidth": 200, "name": "dokumen" },
 										{ "label": "Alasan Permohonan", readonly:true,"view": "textarea", "name": "alasan" },
 										// { "label": "View Attachment", "view": "button", "height": 38, "name": "file" },
-										{ "label": "Change Status", "options": [{id:0,value:""},{id:1, value:"Diterima"}], "view": "combo", "name": "status" },
+										{ "label": "Change Status", "options": [{id:0,value:""},{id:1, value:"Diterima"},{id:3, value:"Ditolak"}], "view": "combo", "name": "status" },
 										{ "label": "Result Analysis", "view": "textarea", name:"analisa"},
 										{ "label": "PIC SysDur", "options": "pic_sysdur", "view": "combo", "name": "admin_id" },
 										// { "label": "Date", "value": "2021-01-13 14:29:23", "view": "datepicker", "name": "date_end" },

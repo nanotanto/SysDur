@@ -68,3 +68,6 @@ Route::get('/documents/storage/uploads/{id}', function ($id) {
 
 Route::get('/fp4status/{id}', 'Fp4StatusController@status');
 Route::post('/updatefp4status', 'Fp4StatusController@updatefp4status');
+
+Route::get('/docstatus/{id}', 'DocStatusController@status');
+Route::post('/updatedocstatus', 'DocStatusController@updatedocstatus');

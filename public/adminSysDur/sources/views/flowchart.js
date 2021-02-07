@@ -12,7 +12,7 @@ export default class FlowchartView extends JetView{
 						{
 							view:"iframe", 
 							id:"frame-body", 
-							src:"drawio"
+							src:"http://localhost/drawio/"
 						}
 					]
             	}
