@@ -22,10 +22,10 @@
 <td style="width: 25%; text-align: center; height: 18px;"><strong>Tanggal</strong></td>
 </tr>
 <tr style="height: 18px;">
-<td style="width: 25%; height: 18px;">&nbsp;</td>
-<td style="width: 25%; height: 18px;">&nbsp;</td>
-<td style="width: 25%; height: 18px;">&nbsp;</td>
-<td style="width: 25%; height: 18px;">&nbsp;</td>
+<td style="width: 25%; height: 18px;">&nbsp;{{ $document->user->name }}</td>
+<td style="width: 25%; height: 18px;">&nbsp;{{ $document->user->position->name }}</td>
+<td style="width: 25%; height: 18px;">&nbsp;{{ $document->user->sign }}</td>
+<td style="width: 25%; height: 18px;">&nbsp;{{ $document->created_at }}</td>
 </tr>
 <tr style="height: 18px;">
 <td style="width: 25%; height: 18px;">&nbsp;</td>
@@ -103,10 +103,10 @@
 <td style="width: 25%; height: 15px; text-align: center;"><strong>TGL REVISI</strong></td>
 </tr>
 <tr style="height: 15px;">
-<td style="width: 25%; height: 15px;">&nbsp;{{$document->department_id}}</td>
+<td style="width: 25%; height: 15px;">&nbsp;{{$document->department->name}}</td>
 <td style="width: 35.1471%; height: 15px;">&nbsp;{{$document->revisi}}</td>
 <td style="width: 14.8529%; height: 15px;">&nbsp;{{$document->no_rev}}</td>
-<td style="width: 25%; height: 15px;">&nbsp;{{$document->updated_at}}</td>
+<td style="width: 25%; height: 15px;">&nbsp;</td>
 </tr>
 <tr style="height: 15px;">
 <td style="width: 25%; height: 15px;">&nbsp;</td>
