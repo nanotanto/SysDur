@@ -62,7 +62,12 @@ export default class FP4FormView extends JetView{
 												if (form.validate()){
 													var data = form.getValues();
 													webix.confirm("Do you wont to save data ?").then(function(result){
-														webix.send("updateForm", data);
+														webix.ajax().post("updateForm", data);
+														$$('formrequest').clear();
+														$$('tbl_fp4form').clearAll();
+														webix.message("Saved");
+														$$("tbl_fp4form").load("fp4forms_open");
+														// webix.send("updateForm", data);
 													});
 		                                        }
 		                                        else
@@ -78,6 +83,7 @@ export default class FP4FormView extends JetView{
 									gravity:2,
 									"rows": [
 										{
+											id:"tbl_fp4form",
 											"url": "fp4forms_open",
 											select:true,
 				                            on:{
@@ -105,7 +111,7 @@ export default class FP4FormView extends JetView{
 											},
 											"columns": [
 
-												{ id:"file",	header:["Lampiran"], template:"<a target='_blank' href='uploads/#file#'>View</a>"},
+												{ id:"file",	header:["Lampiran"], template:"<a target='_blank' href='public/uploads/#file#'>View</a>"},
 												{
 													"id": "user_id",
 													"header": "Nama Pemohon",

@@ -2,5 +2,5 @@
 
 @section('content')
     <!-- App -->
-    <script src="{{ asset('user/codebase/myapp.js') }}" defer></script>
+    <script src="{{ asset('public/user/codebase/myapp.js') }}" defer></script>
 @endsection

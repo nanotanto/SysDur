@@ -7,20 +7,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', '') }}</title>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('public/js/app.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
     <!-- Webix -->
-    <script type="text/javascript" src="{{ asset('webix/webix.min.js') }}"></script>
-    <link rel="stylesheet" type="text/css" href="{{ asset('webix/skins/compact.min.css') }}">
+    <script type="text/javascript" src="{{ asset('public/webix/webix.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/webix/skins/compact.min.css') }}">
     <!-- Component TinyMCE Text Editor -->
-    <script type="text/javascript" src="{{ asset('webix/components/tinymce/tinymce.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('public/webix/components/tinymce/tinymce.js') }}"></script>
     <!-- <script type="text/javascript" src="{{ asset('tinymce/tinymce.min.js') }}"></script> -->
 
-    <link rel="stylesheet" href="{{asset('MaterialDesign/css/materialdesignicons.css')}}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{{asset('public/MaterialDesign/css/materialdesignicons.css')}}" type="text/css" charset="utf-8">
     
     
 </head>

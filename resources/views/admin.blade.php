@@ -2,7 +2,7 @@
 
 @section('content')
 
-<script src="{{ asset('adminSysDur/codebase/myapp.js') }}" defer></script>
+<script src="{{ asset('public/adminSysDur/codebase/myapp.js') }}" defer></script>
 
 <tinystyle style="display:none">
 /* THIS WOULD GO TO CONTENT_CSS - BUT I CANT DO THIS ON FIDDLE */
