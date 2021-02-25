@@ -7,7 +7,7 @@ export default class FP4FormView extends JetView{
 		return {
 			type:"space",
 			rows:[
-				{
+				{	id:"view_fp4form",
 					rows:[
 						{ type:"header", template:"Form Request FP4"},
 						/*wjet::Settings*/
@@ -62,12 +62,14 @@ export default class FP4FormView extends JetView{
 												if (form.validate()){
 													var data = form.getValues();
 													webix.confirm("Do you wont to save data ?").then(function(result){
-														webix.ajax().post("updateForm", data);
-														$$('formrequest').clear();
-														$$('tbl_fp4form').clearAll();
-														webix.message("Saved");
-														$$("tbl_fp4form").load("fp4forms_open");
-														// webix.send("updateForm", data);
+
+														webix.extend($$("view_fp4form"), webix.ProgressBar);
+														$$("view_fp4form").showProgress({
+														   type:"icon",
+														   // delay:3000
+														});
+
+														webix.send("updateForm", data);
 													});
 		                                        }
 		                                        else

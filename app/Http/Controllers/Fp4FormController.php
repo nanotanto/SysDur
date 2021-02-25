@@ -114,9 +114,9 @@ class Fp4FormController extends Controller
         $data->fill($request->all());
         $data->save();
 
-        return response()->json(["status" => "ok"]);
-        // return redirect('admin/#!/top/fp4_form')
-        //                 ->with('success','Form submit successfully.');
+        // return response()->json(["status" => "ok"]);
+        return redirect('admin#!/top/fp4_form')
+                        ->with('success','Form submit successfully.');
 
     }
 
